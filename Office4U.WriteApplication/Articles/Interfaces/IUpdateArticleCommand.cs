@@ -5,6 +5,6 @@ namespace Office4U.WriteApplication.Articles.Interfaces
 {
     public interface IUpdateArticleCommand
     {
-        Task Execute(ArticleForUpdateDto article);
+        Task<bool> Execute(ArticleForUpdateDto article);
     }
 }

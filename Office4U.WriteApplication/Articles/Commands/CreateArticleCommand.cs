@@ -10,13 +10,18 @@ namespace Office4U.Articles.WriteApplication.Article.Commands
     public class CreateArticleCommand : ICreateArticleCommand
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public CreateArticleCommand(IUnitOfWork unitOfWork)
+        public CreateArticleCommand(
+            IUnitOfWork unitOfWork,
+            IMapper mapper
+            )
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task Execute(ArticleForCreationDto articleForCreation)
+        public async Task<ArticleForReturnDto> Execute(ArticleForCreationDto articleForCreation)
         {
             // TODO: inject correct project AutoMapper
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
@@ -24,21 +29,13 @@ namespace Office4U.Articles.WriteApplication.Article.Commands
 
             _unitOfWork.ArticleRepository.Add(newArticle);
 
-            await _unitOfWork.Commit();
+            if (await _unitOfWork.Commit())
+            {
+                var articleForReturnDto = _mapper.Map<ArticleForReturnDto>(newArticle);                
+                return articleForReturnDto;
+            }
 
-            // TODO: handle errors
-
-            //if (await _unitOfWork.Commit())
-            //{
-            //    var articleToReturn = _mapper.Map<ArticleForReturnDto>(newArticle);
-            //    return CreatedAtRoute("GetArticle", new { id = newArticle.Id }, articleToReturn);
-            //}
-
-            //return BadRequest("Failed to create article");
-
-
-            // evt. notifications
-
+            return null;
         }
     }
 }

@@ -2,6 +2,7 @@ namespace Office4U.WriteApplication.Articles.DTOs
 {
     public class ArticleForReturnDto
     {
+        public int Id { get; set; }
         public string Code { get; set; }
         public string SupplierId { get; set; }       
         public string SupplierReference { get; set; }

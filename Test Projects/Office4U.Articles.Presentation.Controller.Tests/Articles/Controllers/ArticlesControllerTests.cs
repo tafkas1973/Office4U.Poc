@@ -30,13 +30,6 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
         private Mock<IDeleteArticleCommand> _deleteCommandMock = new Mock<IDeleteArticleCommand>();
         private PagedList<ArticleDto> _articlesDtoPagedList;
 
-
-
-        // =======================================
-        // TODO: review tests after DDD/CQRS setup
-        // =======================================
-
-
         [SetUp]
         public void Setup()
         {
@@ -96,7 +89,7 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
             var result = await _articlesController.GetArticle(2);
 
             // assert
-            _singleQueryMock.Verify(m => m.Execute(It.IsAny<int>()), Times.Once);
+            _singleQueryMock.Verify(m => m.Execute(2), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<ArticleDto>)));
             Assert.That(((ObjectResult)result.Result).Value.GetType(), Is.EqualTo(typeof(ArticleDto)));

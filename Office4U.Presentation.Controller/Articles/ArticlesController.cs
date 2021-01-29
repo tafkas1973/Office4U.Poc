@@ -58,49 +58,39 @@ namespace Office4U.Presentation.Controller.Articles
         [HttpPost]
         public async Task<IActionResult> CreateArticle(ArticleForCreationDto articleForCreationDto)
         {
-            await _createCommand.Execute(articleForCreationDto);
+            var createdArticle = await _createCommand.Execute(articleForCreationDto);
 
-            return Ok();
+            if (createdArticle != null)
+            {
+                return CreatedAtRoute("GetArticle", new { id = createdArticle.Id }, createdArticle);
+            }
 
-            // TODO: handle errors & return correct status
-
-            //if (await _unitOfWork.Commit())
-            //{
-            //    var articleToReturn = _mapper.Map<ArticleForReturnDto>(newArticle);
-            //    return CreatedAtRoute("GetArticle", new { id = newArticle.Id }, articleToReturn);
-            //}
-
-            //return BadRequest("Failed to create article");
+            return BadRequest("Failed to create article");
         }
 
         [HttpPut]
         // TODO: restful: also specify id in parm list?
+        // TODO: implement Mediatr & handlers?
+        // TODO: strictly a command should not return anything, except when not long running
+        // https://stackoverflow.com/questions/43433318/cqrs-command-return-values
+        // https://lostechies.com/jimmybogard/2013/12/19/put-your-controllers-on-a-diet-posts-and-commands/
         public async Task<ActionResult> UpdateArticle(ArticleForUpdateDto articleUpdateDto)
         {
-            await _updateCommand.Execute(articleUpdateDto);
+            var updated = await _updateCommand.Execute(articleUpdateDto);
 
-            return NoContent();
+            if (updated) return NoContent();
 
-            // TODO: handle errors
-
-            //if (await _unitOfWork.Commit()) return NoContent();
-
-            //return BadRequest("Failed to update article");
+            return BadRequest("Failed to update article");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
-            await _deleteCommand.Execute(id);
+            var deleted = await _deleteCommand.Execute(id);
 
-            return Ok();
+            if (deleted) return Ok();
 
-            // TODO: handle errors
-
-            //if (await _unitOfWork.Commit())
-            //    return Ok();
-
-            //return BadRequest("Failed to delete article");
+            return BadRequest("Failed to delete article");
         }
     }
 }

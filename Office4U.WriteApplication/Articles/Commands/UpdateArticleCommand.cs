@@ -17,7 +17,7 @@ namespace Office4U.WriteApplication.Articles.Commands
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(ArticleForUpdateDto articleForUpdate)
+        public async Task<bool> Execute(ArticleForUpdateDto articleForUpdate)
         {
             Article article = 
                 await _unitOfWork.ArticleRepository.GetArticleByIdAsync(articleForUpdate.Id);
@@ -28,14 +28,9 @@ namespace Office4U.WriteApplication.Articles.Commands
 
             _unitOfWork.ArticleRepository.Update(article);
 
-            await _unitOfWork.Commit();
+            if (await _unitOfWork.Commit()) return true;
 
-            // evt. notifications
-
-            // TODO: handle errors ?
-            // if (await _unitOfWork.Commit()) return NoContent();
-
-            // return BadRequest("Failed to update article");
+            return false;
         }
     }
 }

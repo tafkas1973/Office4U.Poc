@@ -5,6 +5,6 @@ namespace Office4U.WriteApplication.Articles.Interfaces
 {
     public interface ICreateArticleCommand
     {
-        Task Execute(ArticleForCreationDto articleForCreation);
+        Task<ArticleForReturnDto> Execute(ArticleForCreationDto articleForCreation);
     }
 }

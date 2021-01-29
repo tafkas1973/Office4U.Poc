@@ -13,20 +13,15 @@ namespace Office4U.WriteApplication.Articles.Commands
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Execute(int id)
+        public async Task<bool> Execute(int id)
         {
             var articleToDelete = await _unitOfWork.ArticleRepository.GetArticleByIdAsync(id);
 
             _unitOfWork.ArticleRepository.Delete(articleToDelete);
 
-            await _unitOfWork.Commit();
+            if (await _unitOfWork.Commit()) return true;
 
-            // TODO: handle errors
-
-            //if (await _unitOfWork.Commit())
-            //    return Ok();
-
-            //return BadRequest("Failed to delete article");
+            return false;
         }
     }
 }

@@ -8,11 +8,9 @@ namespace Office4U.WriteApplication.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Article, ArticleForReturnDto>();
             CreateMap<ArticleForUpdateDto, Article>();
             CreateMap<ArticleForCreationDto, Article>();
-            //CreateMap<Article, ArticleForReturnDto>();
-
-            //CreateMap<RegisterDto, AppUser>();
         }
     }
 }
