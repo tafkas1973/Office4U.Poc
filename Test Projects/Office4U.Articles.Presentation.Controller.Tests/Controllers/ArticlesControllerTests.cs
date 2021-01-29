@@ -23,9 +23,6 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
 {
     public class ArticlesControllerTests : ControllerTestsBase
     {
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<IArticleRepository> _articleRepositoryMock;
-        private Mock<IReadOnlyArticleRepository> _readOnlyArticleRepositoryMock;
         private ArticleParams _articleParams;
         private IEnumerable<Article> _testArticles;
         private ArticlesController _articlesController;
@@ -35,16 +32,19 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
         private Mock<ICreateArticleCommand> _createCommandMock = new Mock<ICreateArticleCommand>();
         private Mock<IUpdateArticleCommand> _updateCommandMock = new Mock<IUpdateArticleCommand>();
         private Mock<IDeleteArticleCommand> _deleteCommandMock = new Mock<IDeleteArticleCommand>();
+        private PagedList<ArticleDto> _articlesDtoPagedList;
+
+
+
+        // =======================================
+        // TODO: review tests after DDD/CQRS setup
+        // =======================================
 
 
         [SetUp]
         public void Setup()
         {
-            _articleRepositoryMock = new Mock<IArticleRepository>() { DefaultValue = DefaultValue.Mock };
-            _unitOfWorkMock = new Mock<IUnitOfWork>();
-            _unitOfWorkMock.Setup(m => m.ArticleRepository).Returns(_articleRepositoryMock.Object);
             _articleParams = new ArticleParams();
-
             _testArticles = new List<Article>() {
                 new ArticleBuilder().WithId(1).WithCode("Article1").WithName1("1st article").WithSupplierId("sup1").WithSupplierReference("sup1 ref 1").WithUnit("ST").WithPurchasePrice(10.00M).Build(),
                 new ArticleBuilder().WithId(2).WithCode("Article2").WithName1("2nd article").WithSupplierId("sup2").WithSupplierReference("sup1 ref 2").WithUnit("ST").WithPurchasePrice(20.00M).Build(),
@@ -52,12 +52,23 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             }.AsEnumerable();
             var articlesPagedList = new PagedList<Article>(items: _testArticles, count: 3, pageNumber: 1, pageSize: 10);
 
-            _readOnlyArticleRepositoryMock
-                .Setup(m => m.GetArticlesAsync(_articleParams))
-                .ReturnsAsync(articlesPagedList);
-            _articleRepositoryMock
-                .Setup(m => m.GetArticleByIdAsync(2))
-                .ReturnsAsync(articlesPagedList[1]);
+            var articlesDtoList = articlesPagedList.Select(a => new ArticleDto()
+            {
+                Id = a.Id,
+                Code = a.Code,
+                Name1 = a.Name1,
+                SupplierId = a.SupplierId,
+                SupplierReference = a.SupplierReference,
+                PurchasePrice = a.PurchasePrice,
+                Unit = a.Unit,
+                Photos = a.Photos.Select(p => new ArticlePhotoDto() { Id = p.Id, IsMain = p.IsMain, Url = p.Url }).ToList(),
+                PhotoUrl = a.Photos.Any() ? a.Photos.First().Url : string.Empty
+            });
+
+            _articlesDtoPagedList = new PagedList<ArticleDto>(articlesDtoList, articlesPagedList.TotalCount, articlesPagedList.CurrentPage, articlesPagedList.PageSize);
+            _listQueryMock
+                .Setup(m => m.Execute(It.IsAny<ArticleParams>()))
+                .Returns(Task.FromResult(_articlesDtoPagedList));
 
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
             _articlesController = new ArticlesController(_listQueryMock.Object, _singleQueryMock.Object, _createCommandMock.Object, _updateCommandMock.Object, _deleteCommandMock.Object);
@@ -72,7 +83,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             var result = await _articlesController.GetArticles(_articleParams);
 
             // assert
-            _readOnlyArticleRepositoryMock.Verify(m => m.GetArticlesAsync(It.IsAny<ArticleParams>()), Times.Once);
+            _listQueryMock.Verify(m => m.Execute(It.IsAny<ArticleParams>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<IEnumerable<ArticleDto>>)));
             Assert.That(result.Result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
@@ -84,12 +95,15 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
         public async Task GetArticle_WithIdEqualsTo2_ReturnsTheCorrectArticleDto()
         {
             // arrange
+            _singleQueryMock
+                .Setup(m => m.Execute(It.IsAny<int>()))
+                .Returns(Task.FromResult(_articlesDtoPagedList[1]));
 
             // act
             var result = await _articlesController.GetArticle(2);
 
             // assert
-            _readOnlyArticleRepositoryMock.Verify(m => m.GetArticleByIdAsync(It.IsAny<int>()), Times.Once);
+            _singleQueryMock.Verify(m => m.Execute(It.IsAny<int>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<ArticleDto>)));
             Assert.That(result.Value.GetType(), Is.EqualTo(typeof(ArticleDto)));
@@ -106,7 +120,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             var result = await _articlesController.UpdateArticle(articleForUpdateDto);
 
             // assert
-            _articleRepositoryMock.Verify(m => m.Update(It.IsAny<Article>()), Times.Once);
+            _updateCommandMock.Verify(m => m.Execute(It.IsAny<ArticleForUpdateDto>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(BadRequestObjectResult)));
             Assert.That(((BadRequestObjectResult)result).StatusCode, Is.EqualTo(400));
