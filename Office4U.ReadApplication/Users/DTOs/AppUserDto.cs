@@ -1,6 +1,6 @@
 using System;
 
-namespace Office4U.Presentation.Controller.Controllers.DTOs.AppUser
+namespace Office4U.ReadApplication.Users.DTOs
 {
     public class AppUserDto
     {

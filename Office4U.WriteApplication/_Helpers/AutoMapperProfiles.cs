@@ -1,5 +1,5 @@
 using AutoMapper;
-using Office4U.WriteApplication.Article.DTOs;
+using Office4U.WriteApplication.Articles.DTOs;
 
 namespace Office4U.WriteApplication.Helpers
 {

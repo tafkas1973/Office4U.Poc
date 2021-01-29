@@ -1,6 +1,6 @@
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Data.Ef.SqlServer.Repositories;
-using Office4U.WriteApplication.Article.Interfaces.IOC;
+using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using Office4U.WriteApplication.Interfaces.IOC;
 using Office4U.WriteApplication.User.Interfaces;
 using System.Threading.Tasks;

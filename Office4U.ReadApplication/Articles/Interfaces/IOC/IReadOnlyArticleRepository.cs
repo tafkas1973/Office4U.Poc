@@ -2,7 +2,7 @@ using Office4U.Common;
 using Office4U.ReadApplication.Interfaces;
 using System.Threading.Tasks;
 
-namespace Office4U.ReadApplication.Article.Interfaces.IOC
+namespace Office4U.ReadApplication.Articles.Interfaces.IOC
 {
     public interface IReadOnlyArticleRepository : IReadOnlyRepositoryBase
     {

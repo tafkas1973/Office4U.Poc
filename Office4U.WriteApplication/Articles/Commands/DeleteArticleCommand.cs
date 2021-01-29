@@ -1,8 +1,8 @@
-﻿using Office4U.WriteApplication.Article.Interfaces;
+﻿using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Interfaces.IOC;
 using System.Threading.Tasks;
 
-namespace Office4U.WriteApplication.Article.Commands
+namespace Office4U.WriteApplication.Articles.Commands
 {
     public class DeleteArticleCommand : IDeleteArticleCommand
     {

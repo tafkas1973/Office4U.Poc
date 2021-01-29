@@ -1,7 +1,7 @@
-﻿using Office4U.WriteApplication.Article.DTOs;
+﻿using Office4U.WriteApplication.Articles.DTOs;
 using System.Threading.Tasks;
 
-namespace Office4U.WriteApplication.Article.Interfaces
+namespace Office4U.WriteApplication.Articles.Interfaces
 {
     public interface IUpdateArticleCommand
     {

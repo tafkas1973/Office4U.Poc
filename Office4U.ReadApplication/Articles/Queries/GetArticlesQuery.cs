@@ -1,21 +1,23 @@
 ﻿using AutoMapper;
 using Office4U.Common;
-using Office4U.ReadApplication.Article.DTOs;
-using Office4U.ReadApplication.Article.Interfaces;
-using Office4U.ReadApplication.Article.Interfaces.IOC;
+using Office4U.ReadApplication.Articles.DTOs;
+using Office4U.ReadApplication.Articles.Interfaces;
+using Office4U.ReadApplication.Articles.Interfaces.IOC;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Office4U.ReadApplication.Article.Queries
+namespace Office4U.ReadApplication.Articles.Queries
 {
     // TODO: implement MediatR ?
 
-    public class GetArticlesListQuery : IGetArticlesListQuery
+    public class GetArticlesQuery : IGetArticlesQuery
     {
         private readonly IReadOnlyArticleRepository _readOnlyArticleRepository;
         private readonly IMapper _mapper;
 
-        public GetArticlesListQuery(IReadOnlyArticleRepository articleRepository, IMapper mapper)
+        public GetArticlesQuery(
+            IReadOnlyArticleRepository articleRepository, 
+            IMapper mapper)
         {
             _readOnlyArticleRepository = articleRepository;
             _mapper = mapper;

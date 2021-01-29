@@ -1,4 +1,4 @@
-namespace Office4U.ReadApplication.Article.DTOs
+namespace Office4U.ReadApplication.Articles.DTOs
 {
     public class ArticlePhotoDto
     {

@@ -1,4 +1,4 @@
-using Office4U.WriteApplication.Article.Interfaces.IOC;
+using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using Office4U.WriteApplication.User.Interfaces;
 using System.Threading.Tasks;
 

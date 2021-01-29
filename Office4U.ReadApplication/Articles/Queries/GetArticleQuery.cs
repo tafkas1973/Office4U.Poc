@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Office4U.ReadApplication.Article.DTOs;
-using Office4U.ReadApplication.Article.Interfaces;
-using Office4U.ReadApplication.Article.Interfaces.IOC;
+using Office4U.ReadApplication.Articles.DTOs;
+using Office4U.ReadApplication.Articles.Interfaces;
+using Office4U.ReadApplication.Articles.Interfaces.IOC;
 using System.Threading.Tasks;
 
-namespace Office4U.ReadApplication.Article.Queries
+namespace Office4U.ReadApplication.Articles.Queries
 {
     // TODO: implement MediatR ?
 

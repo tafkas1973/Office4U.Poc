@@ -1,6 +1,6 @@
 ﻿cd\
 
-cd Office4u.Article.Poc\Office4U.Articles.Data.Ef.SqlServer
+cd Office4u.Poc\Office4U.Articles.Data.Ef.SqlServer
 
 dotnet ef migrations add <migration_name> --context DataContext
 

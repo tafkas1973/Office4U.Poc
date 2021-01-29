@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Entities.Articles;
-using Office4U.WriteApplication.Article.Interfaces.IOC;
+using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using System.Threading.Tasks;
 
 namespace Office4U.Data.Ef.SqlServer.Repositories

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Office4U.Common;
 //using Office4U.Data.Ef.SqlServer.Interfaces;  // TODO: refactor : THIS IS NOT ALLOWED !!!
 using Office4U.Presentation.Controller.Extensions;
-using Office4U.ReadApplication.Article.DTOs;
-using Office4U.ReadApplication.Article.Interfaces;
-using Office4U.WriteApplication.Article.DTOs;
-using Office4U.WriteApplication.Article.Interfaces;
+using Office4U.ReadApplication.Articles.DTOs;
+using Office4U.ReadApplication.Articles.Interfaces;
+using Office4U.WriteApplication.Articles.DTOs;
+using Office4U.WriteApplication.Articles.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,14 +18,14 @@ namespace Office4U.Presentation.Controller.Controllers
     [Route("api/[controller]")]
     public class ArticlesController : ControllerBase
     {
-        private readonly IGetArticlesListQuery _listQuery;
+        private readonly IGetArticlesQuery _listQuery;
         private readonly IGetArticleQuery _singleQuery;
         private readonly ICreateArticleCommand _createCommand;
         private readonly IUpdateArticleCommand _updateCommand;
         private readonly IDeleteArticleCommand _deleteCommand;
 
         public ArticlesController(
-            IGetArticlesListQuery listQuery,
+            IGetArticlesQuery listQuery,
             IGetArticleQuery singleQuery,
             ICreateArticleCommand createCommand,
             IUpdateArticleCommand updateCommand,

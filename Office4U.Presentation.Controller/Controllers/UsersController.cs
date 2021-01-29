@@ -1,40 +1,37 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Office4U.Common;
 using Office4U.Domain.Model.Entities.Users;
 using Office4U.Presentation.Controller.Controllers.DTOs.AppUser;
 using Office4U.Presentation.Controller.Extensions;
-using Office4U.WriteApplication.Interfaces.IOC;
+using Office4U.ReadApplication.Users.DTOs;
+using Office4U.ReadApplication.Users.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Office4U.Presentation.Controller.Controllers
 {
-
-
-    // TODO: REFACTOR toward DDD principles & remove EF reference!!!
-
     [Authorize]
     public class UsersController : BaseApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IGetUsersQuery _listQuery;
+        private readonly IGetUserQuery _singleQuery;
+
         public UsersController(
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
+            IGetUsersQuery listQuery,
+            IGetUserQuery singleQuery
+            )
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            _listQuery = listQuery;
+            _singleQuery = singleQuery;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsersAsync(
             [FromQuery] UserParams userParams)
         {
-            var users = await _unitOfWork.UserRepository.GetUsersAsync(userParams);
-
-            var usersToReturn = _mapper.Map<IEnumerable<AppUserDto>>(users);
+            var users = await _listQuery.Execute(userParams);
 
             // users is of type PagedList<User>
             // inherits List, so it's a List<Users> plus Pagination info
@@ -45,17 +42,15 @@ namespace Office4U.Presentation.Controller.Controllers
                 users.TotalPages
             );
 
-            return Ok(usersToReturn);
+            return Ok(users.ToList());
         }
 
         [HttpGet("{username}")]
         public async Task<ActionResult<AppUserDto>> GetUser(string username)
         {
-            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+            var appUserDto = await _singleQuery.Execute(username);
 
-            var userToReturn = _mapper.Map<AppUserDto>(user);
-
-            return userToReturn;
+            return Ok(appUserDto);
         }
     }
 }

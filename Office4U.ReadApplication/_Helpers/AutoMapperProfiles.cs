@@ -1,6 +1,8 @@
 using AutoMapper;
 using Office4U.Domain.Model.Entities.Articles;
-using Office4U.ReadApplication.Article.DTOs;
+using Office4U.Domain.Model.Entities.Users;
+using Office4U.ReadApplication.Articles.DTOs;
+using Office4U.ReadApplication.Users.DTOs;
 using System.Linq;
 
 namespace Office4U.ReadApplication.Helpers
@@ -9,9 +11,9 @@ namespace Office4U.ReadApplication.Helpers
     {
         public AutoMapperProfiles()
         {
-            //CreateMap<AppUser, AppUserDto>();
+            CreateMap<AppUser, AppUserDto>();
 
-            CreateMap<Domain.Model.Entities.Articles.Article, ArticleDto>()
+            CreateMap<Article, ArticleDto>()
                 .ForMember(
                     dest => dest.PhotoUrl,
                     options => options.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url));

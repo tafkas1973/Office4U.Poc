@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Office4U.Common;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Entities.Articles;
-using Office4U.ReadApplication.Article.Interfaces.IOC;
+using Office4U.ReadApplication.Articles.Interfaces.IOC;
 using System.Linq;
 using System.Threading.Tasks;
 
