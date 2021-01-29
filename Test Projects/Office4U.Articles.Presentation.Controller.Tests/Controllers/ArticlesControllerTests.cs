@@ -52,25 +52,14 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             }.AsEnumerable();
             var articlesPagedList = new PagedList<Article>(items: _testArticles, count: 3, pageNumber: 1, pageSize: 10);
 
-            var articlesDtoList = articlesPagedList.Select(a => new ArticleDto()
-            {
-                Id = a.Id,
-                Code = a.Code,
-                Name1 = a.Name1,
-                SupplierId = a.SupplierId,
-                SupplierReference = a.SupplierReference,
-                PurchasePrice = a.PurchasePrice,
-                Unit = a.Unit,
-                Photos = a.Photos.Select(p => new ArticlePhotoDto() { Id = p.Id, IsMain = p.IsMain, Url = p.Url }).ToList(),
-                PhotoUrl = a.Photos.Any() ? a.Photos.First().Url : string.Empty
-            });
+            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
+            var articlesDtoList = mapper.Map<IEnumerable<ArticleDto>>(articlesPagedList);
 
             _articlesDtoPagedList = new PagedList<ArticleDto>(articlesDtoList, articlesPagedList.TotalCount, articlesPagedList.CurrentPage, articlesPagedList.PageSize);
             _listQueryMock
                 .Setup(m => m.Execute(It.IsAny<ArticleParams>()))
                 .Returns(Task.FromResult(_articlesDtoPagedList));
 
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
             _articlesController = new ArticlesController(_listQueryMock.Object, _singleQueryMock.Object, _createCommandMock.Object, _updateCommandMock.Object, _deleteCommandMock.Object);
         }
 

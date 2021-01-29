@@ -1,5 +1,7 @@
-﻿using Office4U.WriteApplication.Articles.DTOs;
+﻿using AutoMapper;
+using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
+using Office4U.WriteApplication.Helpers;
 using Office4U.WriteApplication.Interfaces.IOC;
 using System.Threading.Tasks;
 
@@ -16,16 +18,9 @@ namespace Office4U.Articles.WriteApplication.Article.Commands
 
         public async Task Execute(ArticleForCreationDto articleForCreation)
         {
-            // TODO mapping via DI !!           
-            // var newArticle = _mapper.Map<Article>(newArticleDto);
-            var newArticle = Domain.Model.Articles.Entities.Article.Create(
-                articleForCreation.Code,
-                articleForCreation.SupplierId,
-                articleForCreation.SupplierReference,
-                articleForCreation.Name1,
-                articleForCreation.PurchasePrice,
-                articleForCreation.Unit
-                );
+            // TODO: inject correct project AutoMapper
+            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
+            var newArticle = mapper.Map<Domain.Model.Articles.Entities.Article>(articleForCreation);
 
             _unitOfWork.ArticleRepository.Add(newArticle);
 

@@ -1,6 +1,8 @@
-﻿using Office4U.Domain.Model.Articles.Entities;
+﻿using AutoMapper;
+using Office4U.Domain.Model.Articles.Entities;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
+using Office4U.WriteApplication.Helpers;
 using Office4U.WriteApplication.Interfaces.IOC;
 using System.Threading.Tasks;
 
@@ -20,13 +22,9 @@ namespace Office4U.WriteApplication.Articles.Commands
             Article article = 
                 await _unitOfWork.ArticleRepository.GetArticleByIdAsync(articleForUpdate.Id);
 
-            // TODO mapping via DI !!           
-            //mapper.Map(articleForUpdate, article);
-
-            article.SupplierId = articleForUpdate.SupplierId;
-            article.SupplierReference = articleForUpdate.SupplierReference;
-            article.Name1 = articleForUpdate.Name1;
-            article.PurchasePrice = articleForUpdate.PurchasePrice;
+            // TODO: inject correct project AutoMapper
+            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
+            mapper.Map(articleForUpdate, article);
 
             _unitOfWork.ArticleRepository.Update(article);
 

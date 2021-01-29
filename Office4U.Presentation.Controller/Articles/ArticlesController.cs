@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Office4U.Common;
-//using Office4U.Data.Ef.SqlServer.Interfaces;  // TODO: refactor : THIS IS NOT ALLOWED !!!
 using Office4U.Presentation.Controller.Extensions;
 using Office4U.ReadApplication.Articles.DTOs;
 using Office4U.ReadApplication.Articles.Interfaces;

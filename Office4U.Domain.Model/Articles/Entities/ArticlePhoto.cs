@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
+// TODO1: make PhotoBase class
+// TODO2: implement discriminator
+
 namespace Office4U.Domain.Model.Articles.Entities
 {
-
-    // TODO1: make PhotoBase class
-    // TODO2: implement discriminator
-
     [Table("ArticlePhotos")]
     public class ArticlePhoto
     {
