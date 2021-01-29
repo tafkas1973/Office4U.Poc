@@ -2,17 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using Office4U.Articles.Common;
-using Office4U.Articles.Domain.Model.Entities.Articles;
 using Office4U.Articles.ImportExport.Api.Controllers;
-using Office4U.Articles.Presentation.Controller.Controllers;
-using Office4U.Articles.ReadApplication.Article.DTOs;
-using Office4U.Articles.ReadApplication.Article.Interfaces;
-using Office4U.Articles.ReadApplication.Helpers;
-using Office4U.Articles.WriteApplication.Article.DTOs;
-using Office4U.Articles.WriteApplication.Article.Interfaces;
-using Office4U.Articles.WriteApplication.Article.Interfaces.IOC;
-using Office4U.Articles.WriteApplication.Interfaces.IOC;
+using Office4U.Common;
+using Office4U.Domain.Model.Articles.Entities;
+using Office4U.Presentation.Controller.Articles;
+using Office4U.ReadApplication.Articles.DTOs;
+using Office4U.ReadApplication.Articles.Interfaces;
+using Office4U.ReadApplication.Articles.Interfaces.IOC;
+using Office4U.ReadApplication.Helpers;
+using Office4U.WriteApplication.Articles.DTOs;
+using Office4U.WriteApplication.Articles.Interfaces;
+using Office4U.WriteApplication.Articles.Interfaces.IOC;
+using Office4U.WriteApplication.Interfaces.IOC;
 using Retail4U.Office4U.WebApi.Tools.Data;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,12 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
     {
         private Mock<IUnitOfWork> _unitOfWorkMock;
         private Mock<IArticleRepository> _articleRepositoryMock;
+        private Mock<IReadOnlyArticleRepository> _readOnlyArticleRepositoryMock;
         private ArticleParams _articleParams;
         private IEnumerable<Article> _testArticles;
         private ArticlesController _articlesController;
 
-        private Mock<IGetArticlesListQuery> _listQueryMock = new Mock<IGetArticlesListQuery>();
+        private Mock<IGetArticlesQuery> _listQueryMock = new Mock<IGetArticlesQuery>();
         private Mock<IGetArticleQuery> _singleQueryMock = new Mock<IGetArticleQuery>();
         private Mock<ICreateArticleCommand> _createCommandMock = new Mock<ICreateArticleCommand>();
         private Mock<IUpdateArticleCommand> _updateCommandMock = new Mock<IUpdateArticleCommand>();
@@ -50,7 +52,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             }.AsEnumerable();
             var articlesPagedList = new PagedList<Article>(items: _testArticles, count: 3, pageNumber: 1, pageSize: 10);
 
-            _articleRepositoryMock
+            _readOnlyArticleRepositoryMock
                 .Setup(m => m.GetArticlesAsync(_articleParams))
                 .ReturnsAsync(articlesPagedList);
             _articleRepositoryMock
@@ -70,7 +72,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             var result = await _articlesController.GetArticles(_articleParams);
 
             // assert
-            _articleRepositoryMock.Verify(m => m.GetArticlesAsync(It.IsAny<ArticleParams>()), Times.Once);
+            _readOnlyArticleRepositoryMock.Verify(m => m.GetArticlesAsync(It.IsAny<ArticleParams>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<IEnumerable<ArticleDto>>)));
             Assert.That(result.Result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
@@ -87,7 +89,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             var result = await _articlesController.GetArticle(2);
 
             // assert
-            _articleRepositoryMock.Verify(m => m.GetArticleByIdAsync(It.IsAny<int>()), Times.Once);
+            _readOnlyArticleRepositoryMock.Verify(m => m.GetArticleByIdAsync(It.IsAny<int>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<ArticleDto>)));
             Assert.That(result.Value.GetType(), Is.EqualTo(typeof(ArticleDto)));
@@ -95,7 +97,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
         }
 
         [Test]
-        public async Task GetArticle_WithNonExistingId_ReturnsTheCorrectArticleDto()
+        public async Task UpdateArticle_WithNonExistingId_ReturnsAnException()
         {
             // arrange
             var articleForUpdateDto = new ArticleForUpdateDto() { Id = 5, Name1 = "Article01 Updated" };

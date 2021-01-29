@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using Office4U.Data.Ef.SqlServer.Repositories;
+using Office4U.Articles.WriteApplication.Article.Commands;
+using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 using Office4U.Data.Ef.SqlServer.UnitOfWork;
+using Office4U.Data.Ef.SqlServer.Users.Repositories;
 using Office4U.ReadApplication.Articles.Interfaces;
 using Office4U.ReadApplication.Articles.Interfaces.IOC;
 using Office4U.ReadApplication.Articles.Queries;
@@ -34,7 +36,7 @@ namespace Office4U.WriteApplication.Extensions
             // write app
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
-            
+
             services.AddScoped<ICreateArticleCommand, CreateArticleCommand>();
             services.AddScoped<IUpdateArticleCommand, UpdateArticleCommand>();
             services.AddScoped<IDeleteArticleCommand, DeleteArticleCommand>();

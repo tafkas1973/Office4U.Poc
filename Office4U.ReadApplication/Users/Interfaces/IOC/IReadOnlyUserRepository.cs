@@ -1,5 +1,5 @@
 using Office4U.Common;
-using Office4U.Domain.Model.Entities.Users;
+using Office4U.Domain.Model.Users.Entities;
 using Office4U.ReadApplication.Interfaces;
 using System.Threading.Tasks;
 

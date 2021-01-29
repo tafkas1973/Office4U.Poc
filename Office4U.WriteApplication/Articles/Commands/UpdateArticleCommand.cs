@@ -1,4 +1,5 @@
-﻿using Office4U.WriteApplication.Articles.DTOs;
+﻿using Office4U.Domain.Model.Articles.Entities;
+using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Interfaces.IOC;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Office4U.WriteApplication.Articles.Commands
 
         public async Task Execute(ArticleForUpdateDto articleForUpdate)
         {
-            Domain.Model.Entities.Articles.Article article = 
+            Article article = 
                 await _unitOfWork.ArticleRepository.GetArticleByIdAsync(articleForUpdate.Id);
 
             // TODO mapping via DI !!           

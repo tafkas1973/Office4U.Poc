@@ -1,6 +1,6 @@
 using AutoMapper;
-using Office4U.Domain.Model.Entities.Articles;
-using Office4U.Domain.Model.Entities.Users;
+using Office4U.Domain.Model.Articles.Entities;
+using Office4U.Domain.Model.Users.Entities;
 using Office4U.ReadApplication.Articles.DTOs;
 using Office4U.ReadApplication.Users.DTOs;
 using System.Linq;

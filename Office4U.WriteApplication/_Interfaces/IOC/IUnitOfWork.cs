@@ -1,5 +1,5 @@
 using Office4U.WriteApplication.Articles.Interfaces.IOC;
-using Office4U.WriteApplication.User.Interfaces;
+using Office4U.WriteApplication.User.Interfaces.IOC;
 using System.Threading.Tasks;
 
 namespace Office4U.WriteApplication.Interfaces.IOC

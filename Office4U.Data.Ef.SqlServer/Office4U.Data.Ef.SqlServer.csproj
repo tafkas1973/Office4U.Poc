@@ -6,9 +6,9 @@
 
   <ItemGroup>
     <None Remove="appsettings.Development.json" />
-    <None Remove="SeedData\ArticlePhotoSeedData.json" />
-    <None Remove="SeedData\ArticleSeedData.json" />
-    <None Remove="SeedData\UserSeedData.json" />
+    <None Remove="_SeedData\ArticlePhotoSeedData.json" />
+    <None Remove="_SeedData\ArticleSeedData.json" />
+    <None Remove="_SeedData\UserSeedData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,17 +17,17 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="SeedData\ArticlePhotoSeedData.json">
+    <Content Include="_SeedData\ArticlePhotoSeedData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="SeedData\ArticleSeedData.json">
+    <Content Include="_SeedData\ArticleSeedData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="SeedData\UserSeedData.json">
+    <Content Include="_SeedData\UserSeedData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -55,7 +55,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="_Interfaces\" />
   </ItemGroup>
 
 </Project>

@@ -2,16 +2,18 @@
 using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
-using Office4U.Articles.Common;
-using Office4U.Articles.Data.Ef.SqlServer.Contexts;
-using Office4U.Articles.Data.Ef.SqlServer.UnitOfWork;
-using Office4U.Articles.Domain.Model.Entities.Articles;
-using Office4U.Articles.WriteApplication.Article.Interfaces.IOC;
-using Office4U.Articles.WriteApplication.Interfaces.IOC;
+using Office4U.Common;
+using Office4U.Data.Ef.SqlServer.Contexts;
+using Office4U.Data.Ef.SqlServer.UnitOfWork;
+using Office4U.Domain.Model.Articles.Entities;
+using Office4U.WriteApplication.Articles.Interfaces.IOC;
+using Office4U.ReadApplication.Articles.Interfaces.IOC;
+using Office4U.WriteApplication.Interfaces.IOC;
 using Retail4U.Office4U.WebApi.Tools.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 
 namespace Office4U.Articles.ImportExport.Api.Data.Repositories
 {
@@ -19,9 +21,11 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
     {
         private IUnitOfWork _unitOfWork;
         private IArticleRepository _articleRepository;
+        private IReadOnlyArticleRepository _readOnlyArticleRepository;
         private List<Article> _testArticles;
         private Mock<DbSet<Article>> _articleDbSetMock;
         private Mock<DataContext> _dataContextMock;
+        private Mock<ReadOnlyDataContext> _readOnlyDataContextMock;
         private readonly int _defaultPageSize = 10;
 
         [SetUp]
@@ -48,9 +52,12 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
 
             _dataContextMock = new Mock<DataContext>();
             _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
+            _readOnlyDataContextMock = new Mock<ReadOnlyDataContext>();
+            _readOnlyDataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
 
             _unitOfWork = new UnitOfWork(_dataContextMock.Object);
             _articleRepository = _unitOfWork.ArticleRepository;
+            _readOnlyArticleRepository = new ReadOnlyArticleRepository(_readOnlyDataContextMock.Object);
         }
 
         [Test]
@@ -60,7 +67,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams();
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -79,7 +86,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { PageSize = 5, PageNumber = 2 };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -95,7 +102,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { PageSize = 5, PageNumber = 3 };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -113,7 +120,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { OrderBy = "code" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -129,7 +136,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { OrderBy = "supplierReference" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -145,7 +152,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { OrderBy = "name" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -163,7 +170,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { Code = "aRt" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -178,7 +185,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { Code = "cLe1" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -196,7 +203,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { SupplierId = "SUP1" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -213,7 +220,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { SupplierReference = "SUP1" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -230,7 +237,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { Name1 = "rd art" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -246,7 +253,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { PurchasePriceMin = 50.00M };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -262,7 +269,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { PurchasePriceMax = 80.00M };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -279,7 +286,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { PurchasePriceMin = 50.00M, PurchasePriceMax = 80.00M };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -296,7 +303,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             var articleParams = new ArticleParams() { Unit = "B" };
 
             //Act
-            var result = await _articleRepository.GetArticlesAsync(articleParams);
+            var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
@@ -312,7 +319,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             //Arrange
 
             //Act
-            var result = await _articleRepository.GetArticleByIdAsync(3);
+            var result = await _readOnlyArticleRepository.GetArticleByIdAsync(3);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(Article)));
@@ -326,7 +333,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             //Arrange
 
             //Act
-            var result = await _articleRepository.GetArticleByIdAsync(99);
+            var result = await _readOnlyArticleRepository.GetArticleByIdAsync(99);
 
             //Assert
             Assert.That(result, Is.Null);
