@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Office4U.Domain.Model.Entities.Users;
-using Office4U.Presentation.Controller.Controllers.DTOs.AppUser;
 using Office4U.Presentation.Controller.Services.Interfaces;
+using Office4U.WriteApplication.Users.DTOs;
 using System.Threading.Tasks;
 
 namespace Office4U.Presentation.Controller.Controllers
@@ -29,7 +29,7 @@ namespace Office4U.Presentation.Controller.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserToReturnDto>> Register(RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username already exists");
 
@@ -45,7 +45,7 @@ namespace Office4U.Presentation.Controller.Controllers
 
             if (!roleResult.Succeeded) return BadRequest(result.Errors);
 
-            return new UserDto
+            return new UserToReturnDto
             {
                 Username = user.UserName,
                 Token = await _tokenService.CreateToken(user)
@@ -53,7 +53,7 @@ namespace Office4U.Presentation.Controller.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserToReturnDto>> Login(LoginDto loginDto)
         {
             var dbUser = await _userManager.Users
                 .SingleOrDefaultAsync(u => u.UserName == loginDto.Username.ToLower());
@@ -68,7 +68,7 @@ namespace Office4U.Presentation.Controller.Controllers
 
             if (!result.Succeeded) return Unauthorized();
 
-            return new UserDto
+            return new UserToReturnDto
             {
                 Username = dbUser.UserName,
                 Token = await _tokenService.CreateToken(dbUser)

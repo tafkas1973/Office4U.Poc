@@ -3,7 +3,7 @@ using Office4U.Common;
 using Office4U.Domain.Model.Entities.Users;
 using Office4U.WriteApplication.Interfaces.IOC;
 
-namespace Office4U.WriteApplication.User.Interfaces
+namespace Office4U.WriteApplication.User.Interfaces.IOC
 {
     public interface IUserRepository: IRepositoryBase
     {

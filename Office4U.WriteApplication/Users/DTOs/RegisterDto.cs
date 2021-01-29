@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Office4U.Presentation.Controller.Controllers.DTOs.AppUser
+namespace Office4U.WriteApplication.Users.DTOs
 {
     public class RegisterDto
     {

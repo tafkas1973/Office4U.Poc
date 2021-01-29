@@ -1,6 +1,6 @@
-namespace Office4U.Presentation.Controller.Controllers.DTOs.AppUser
+namespace Office4U.WriteApplication.Users.DTOs
 {
-    public class UserDto
+    public class UserToReturnDto
     {
         public string Username { get; set; }
         public string Token { get; set; }

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Office4U.Common;
 using Office4U.Domain.Model.Entities.Users;
-using Office4U.Presentation.Controller.Controllers.DTOs.AppUser;
 using Office4U.Presentation.Controller.Extensions;
 using Office4U.ReadApplication.Users.DTOs;
 using Office4U.ReadApplication.Users.Interfaces;
