@@ -2,24 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
-using Office4U.Articles.ImportExport.Api.Controllers;
 using Office4U.Common;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Presentation.Controller.Articles;
 using Office4U.ReadApplication.Articles.DTOs;
 using Office4U.ReadApplication.Articles.Interfaces;
-using Office4U.ReadApplication.Articles.Interfaces.IOC;
 using Office4U.ReadApplication.Helpers;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
-using Office4U.WriteApplication.Articles.Interfaces.IOC;
-using Office4U.WriteApplication.Interfaces.IOC;
 using Retail4U.Office4U.WebApi.Tools.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
+namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
 {
     public class ArticlesControllerTests : ControllerTestsBase
     {
@@ -60,7 +56,15 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
                 .Setup(m => m.Execute(It.IsAny<ArticleParams>()))
                 .Returns(Task.FromResult(_articlesDtoPagedList));
 
-            _articlesController = new ArticlesController(_listQueryMock.Object, _singleQueryMock.Object, _createCommandMock.Object, _updateCommandMock.Object, _deleteCommandMock.Object);
+            _articlesController = new ArticlesController(
+                _listQueryMock.Object,
+                _singleQueryMock.Object,
+                _createCommandMock.Object,
+                _updateCommandMock.Object,
+                _deleteCommandMock.Object)
+            {
+                ControllerContext = TestControllerContext
+            };
         }
 
         [Test]
@@ -76,7 +80,7 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<IEnumerable<ArticleDto>>)));
             Assert.That(result.Result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
-            Assert.That(((ObjectResult)result.Result).Value.GetType(), Is.EqualTo(typeof(List<ArticleDto>)));
+            Assert.That(((ObjectResult)result.Result).Value.GetType(), Is.EqualTo(typeof(PagedList<ArticleDto>)));
             Assert.That(((List<ArticleDto>)((ObjectResult)result.Result).Value).Count, Is.EqualTo(3));
         }
 
@@ -95,8 +99,8 @@ namespace Office4U.Articles.ImportExport.Api.Tests.Controllers
             _singleQueryMock.Verify(m => m.Execute(It.IsAny<int>()), Times.Once);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<ArticleDto>)));
-            Assert.That(result.Value.GetType(), Is.EqualTo(typeof(ArticleDto)));
-            Assert.That(result.Value.Id, Is.EqualTo(2));
+            Assert.That(((ObjectResult)result.Result).Value.GetType(), Is.EqualTo(typeof(ArticleDto)));
+            Assert.That(((ArticleDto)((ObjectResult)result.Result).Value).Id, Is.EqualTo(2));
         }
 
         [Test]

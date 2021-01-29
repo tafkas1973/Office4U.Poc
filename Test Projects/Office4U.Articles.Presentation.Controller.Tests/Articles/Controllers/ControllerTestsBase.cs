@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 using Moq;
 
-namespace Office4U.Articles.ImportExport.Api.Controllers
+namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
 {
     public class ControllerTestsBase
     {

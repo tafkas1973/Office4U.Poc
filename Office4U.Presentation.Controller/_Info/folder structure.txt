@@ -1,0 +1,8 @@
+
+functional cohesion, spatial locality
+folder organization specific to each layer:
+
+-Presentation: per web page
+-Application: per use case
+-Domain: per aggregate root of each domain entity
+-Persistence: per database table
