@@ -1,0 +1,17 @@
+<textarea 
+    [class.is-invalid]="ngControl.touched && ngControl.invalid"
+    [class.is-valid]="ngControl.touched && ngControl.valid"
+    class="form-control"
+    [formControl]="ngControl.control"
+    placeholder="{{label}}"
+    rows="{{rows}}" 
+    maxlength="{{maxLength}}">
+</textarea>
+<p class="pull-right text-counter text-muted">
+    {{ngControl.control.value.length || 0}}/150
+</p>
+<div 
+    *ngIf="ngControl.control.errors?.required"  
+    class="invalid-feedback">
+    Please enter a {{label}}
+</div>

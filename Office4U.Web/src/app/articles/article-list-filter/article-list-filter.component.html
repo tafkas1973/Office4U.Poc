@@ -1,0 +1,44 @@
+<form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadArticles()" autocomplete="off">
+    <div class="row">
+        <o4u-label-input class="col-3" [labelText]="'Article Code: '" [(inputControl)]="articleParams.code">
+        </o4u-label-input>
+        <o4u-label-input class="col-3" [labelText]="'Supplier Id: '" [(inputControl)]="articleParams.supplierId">
+        </o4u-label-input>
+        <o4u-label-input class="col-3" [labelText]="'Supplier Reference: '"
+            [(inputControl)]="articleParams.supplierReference">
+        </o4u-label-input>
+        <o4u-label-input class="col-3" [labelText]="'Article Name: '" [(inputControl)]="articleParams.name1">
+        </o4u-label-input>
+    </div>
+    <div class="row">
+        <o4u-label-input class="col-3" [labelText]="'Unit of Measure: '" [(inputControl)]="articleParams.unit">
+        </o4u-label-input>
+        <o4u-label-input class="col-3" [labelText]="'Min. Purchase Price: '"
+            [(inputControl)]="articleParams.purchasePriceMin">
+        </o4u-label-input>
+        <o4u-label-input class="col-3" [labelText]="'Max. Purchase Price: '"
+            [(inputControl)]="articleParams.purchasePriceMax">
+        </o4u-label-input>
+        <div class=" form-group col-3">
+            <label>Order by: </label>
+            <div class="btn-group float-right">
+                <button type="button" class="btn btn-primary" name='orderBy' (click)="loadArticles()" btnRadio='code'
+                    [(ngModel)]="articleParams.orderBy">
+                    Code
+                </button>
+                <button type="button" class="btn btn-primary" name='orderBy' (click)="loadArticles()" btnRadio='name'
+                    [(ngModel)]="articleParams.orderBy">
+                    Name
+                </button>
+                <button type="button" class="btn btn-primary" name='orderBy' (click)="loadArticles()"
+                    btnRadio='supplierReference' [(ngModel)]="articleParams.orderBy">
+                    Supplier Ref.
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-primary" type="submit">Apply Filters</button>
+        <button class="btn btn-info" (click)="resetFilters()">Reset Filters</button>
+    </div>
+</form>

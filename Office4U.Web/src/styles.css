@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("assets/lumen.bootstrap.min.css");
+@import url("app/styles/o4u-tab.css");
+
+:root {
+  --primary-color: var(--blue); /*#158cba*/
+}

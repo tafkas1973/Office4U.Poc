@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand mr-5" routerLink="/" routerLinkActive='active'>Article Import/Export</a>
+
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="accountService.currentUser$ | async; else errorPage">
+        <li class="nav-item" *appHasRole="['ManageArticles']">
+          <a class="nav-link" routerLink="/article-list" routerLinkActive='active'><i
+              class="fa fa-bullseye mr-2"></i>Articles</a>
+        </li>
+        <li class="nav-item" *appHasRole="['ImportArticles']">
+          <a class="nav-link" routerLink="/import" routerLinkActive='active'><i class="fa fa-upload mr-2"></i>Import</a>
+        </li>
+        <li class="nav-item" *appHasRole="['ExportArticles']">
+          <a class="nav-link" routerLink="/export" routerLinkActive='active'><i
+              class="fa fa-download mr-2"></i>Export</a>
+        </li>
+      </ng-container>
+      <ng-template #errorPage>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive='active'><i class="fa fa-bug mr-2"></i>Errors</a>
+        </li>
+      </ng-template>
+    </ul>
+
+    <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+      <div class="dropdown mr-3" *appHasRole="['Admin']" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle>Management</a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="nav-link" routerLink="/admin"><i class="fa fa-unlock mr-2"></i>
+            Admin</a>
+          <div class="dropdown-divider"></div>
+          <a class="nav-link" routerLink="/history"><i class="fa fa-history mr-2"></i> History/log</a>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+        <a class="dropdown-item" (click)="onChangeTheme()"><i class="fa fa-adjust mr-2"></i> {{switchToMode}}</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out mr-2"></i> Logout</a>
+      </div>
+    </div>
+
+    <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()"
+      autocomplete="off">
+      <input name="username" [(ngModel)]="model.username" class="form-control mr-2" type="text" placeholder="Username">
+      <input name="password" [(ngModel)]="model.password" class="form-control mr-2" type="password"
+        placeholder="Password">
+      <button [disabled]="!model.username || !model.password" class="btn btn-success" type="submit">Login</button>
+    </form>
+  </div>
+</nav>

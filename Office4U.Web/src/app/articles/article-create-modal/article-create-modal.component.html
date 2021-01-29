@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Create Article</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="articleCreateForm" id="articleCreateForm" (ngSubmit)="createArticle()" autocomplete="off">
+        <h4 class="mt-3"><strong>Code</strong></h4>
+        <o4u-input [formControl]='articleCreateForm.controls["code"]' [label]='"Code"'></o4u-input>
+
+        <h4 class="mt-3"><strong>Name</strong></h4>
+        <o4u-input [formControl]='articleCreateForm.controls["name1"]' [label]='"Name"'></o4u-input>
+
+        <h4 class="mt-3"><strong>Supplier Id</strong></h4>
+        <o4u-input [formControl]='articleCreateForm.controls["supplierId"]' [label]='"Supplier id"'></o4u-input>
+
+        <h4 class="mt-3"><strong>Supplier Reference</strong></h4>
+        <div class="form-group">
+            <o4u-textarea [formControl]='articleCreateForm.controls["supplierReference"]'
+                [label]='"Supplier Reference Id"' [rows]="3" [maxlength]="150"></o4u-textarea>
+        </div>
+
+        <h4 class="mt-3"><strong>Price info (€/Unit)</strong></h4>
+        <div class="row">
+            <div class="form-group col-9 pl-15">
+                <o4u-input [type]='"number"' [formControl]='articleCreateForm.controls["purchasePrice"]'
+                    [label]='"Purchase Price(€)"'>
+                </o4u-input>
+            </div>
+            <div class="col-3 pr-15">
+                <o4u-input [formControl]='articleCreateForm.controls["unit"]' [label]='"Unit"'></o4u-input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row mt-5" *ngIf="validationErrors.length > 0">
+    <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+            {{error}}
+        </li>
+    </ul>
+</div>
+
+<div class="modal-footer">
+    <div class="form-group">
+        <button *ngIf="!getServerSideValidation" (click)="getServerSideValidation=true" class="btn btn-secondary">Server
+            side check</button>
+        <button *ngIf="getServerSideValidation" (click)="getServerSideValidation=false" class="btn btn-primary">Client
+            side check</button>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="modalRef.hide()">Cancel</button>
+    <button [disabled]="!articleCreateForm.valid && !getServerSideValidation" type="submit" class="btn btn-success"
+        form="articleCreateForm">Submit</button>
+</div>

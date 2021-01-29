@@ -1,0 +1,23 @@
+.img-thumbnail { 
+    border: none;   
+}
+
+.card-body {
+    padding: 0 25px;    
+}
+
+.card-footer {
+    padding: 10px 15px;
+    background-color: #fff;
+    border-top: none;
+}
+
+img.card-img-top.img-thumbnail {
+    border: none;
+}
+
+.o4u-link {
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--primary-color);
+}

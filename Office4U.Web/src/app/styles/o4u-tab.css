@@ -1,0 +1,45 @@
+.tab-panel {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.nav-tabs > li.open, .o4u-tabset > .nav-tabs > li:hover {
+    border-bottom: 4px solid rgb(138, 189, 209)
+}
+  
+.o4u-tabset > .nav-tabs > li.open > a, .o4u-tabset > .nav-tabs > li:hover > a {
+    border: 0;
+    background: none !important;
+    color: #333333;
+}
+  
+.o4u-tabset > .nav-tabs > li.open > a > i, .o4u-tabset > .nav-tabs > li:hover > a > i {
+    color: #a6a6a6;
+}
+  
+.o4u-tabset > .nav-tabs > li.open .dropdown-menu, .o4u-tabset > .nav-tabs > li:hover .dropdown-menu {
+    margin-top: 0px;
+}
+  
+.o4u-tabset > .nav-tabs > li.active {
+    border-bottom: 4px solid var(--primary-color);
+    position: relative;
+}
+  
+.o4u-tabset > .nav-tabs > li.active > a {
+    border: 0 !important;
+    color: #333333;
+}
+  
+.o4u-tabset > .nav-tabs > li.active > a > i {
+    color: #404040;
+}
+  
+.o4u-tabset > .tab-content {
+    margin-top: -3px;
+    /*background-color: #fff;*/
+    border: 0;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}

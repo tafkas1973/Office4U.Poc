@@ -1,0 +1,22 @@
+.table-hover tbody tr:hover td
+{
+    color:white;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.o4u-link {
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--primary-color);
+}
+
+.o4u-filter {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(21,140,186,.25);
+    margin-left: 5px;
+}
+
+span.badge.badge-primary {
+    padding: 4px;
+}

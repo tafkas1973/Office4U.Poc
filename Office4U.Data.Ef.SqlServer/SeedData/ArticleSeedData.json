@@ -1,0 +1,98 @@
+[
+    {
+        "Code": "27400287",
+        "SupplierId": "302740",
+        "SupplierReference": "POW X131-A",
+        "Name1": "ZAAGBLAD 6T",
+        "Unit": "ST",
+        "PurchasePrice": 6.75
+    },
+    {
+        "Code": "27400436",
+        "SupplierId": "302740",
+        "SupplierReference": "POW X240",
+        "Name1": "TEGELSNIJDER 600W",
+        "Unit": "ST",
+        "PurchasePrice": 130
+    },
+    {
+        "Code": "27400438",
+        "SupplierId": "302740",
+        "SupplierReference": "POW X180",
+        "Name1": "BANDZAAG 350W",
+        "Unit": "ST",
+        "PurchasePrice": 99
+    },
+    {
+        "Code": "27400439",
+        "SupplierId": "302740",
+        "SupplierReference": "POW X190",
+        "Name1": "FIGUURZAAGMACHINE 85W",
+        "Unit": "ST",
+        "PurchasePrice": 59
+    },
+    {
+        "Code": "27400442",
+        "SupplierId": "302740",
+        "SupplierReference": "POW X230",
+        "Name1": "TEGELSNIJDER750W",
+        "Unit": "ST",
+        "PurchasePrice": 84
+    },
+    {
+        "Code": "27400463",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX093",
+        "Name1": "BOVENFREES 1500W",
+        "Unit": "ST",
+        "PurchasePrice": 69
+    },
+    {
+        "Code": "27400494",
+        "SupplierId": "302740",
+        "SupplierReference": "POWXG2032",
+        "Name1": "GRAS/HAAG SCHAAR7.2V",
+        "Unit": "ST",
+        "PurchasePrice": 24.95
+    },
+    {
+        "Code": "27400559",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX1230",
+        "Name1": "BANKSLIJPMOLEN- 350W",
+        "Unit": "ST",
+        "PurchasePrice": 49.95
+    },
+    {
+        "Code": "27400560",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX1250",
+        "Name1": "BANKSLIJPMOLEN COMBI 350W",
+        "Unit": "ST",
+        "PurchasePrice": 59.95
+    },
+    {
+        "Code": "27400561",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX180A",
+        "Name1": "VERVANGZAAGJES POWX180",
+        "Unit": "ST",
+        "PurchasePrice": 5.95
+    },
+    {
+        "Code": "27400562",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX190A",
+        "Name1": "VERVANGZAAGJES POWX190",
+        "Unit": "ST",
+        "PurchasePrice": 4.49
+    },
+    {
+        "Code": "27400566",
+        "SupplierId": "302740",
+        "SupplierReference": "POWX720",
+        "Name1": "LASER WATERPAS OP VOET",
+        "Unit": "ST",
+        "PurchasePrice": 35
+    }
+]

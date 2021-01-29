@@ -1,0 +1,21 @@
+<table class="table table-striped table-bordered table-hover" [hidden]="!dataRows || dataRows.length === 0">
+    <thead class="bg-primary text-center">
+        <tr>
+            <th *ngFor="let colTitle of columnTitles">{{colTitle}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of dataRows" class="table-hover" (click)="onRowClick(row.id)">
+            <td *ngFor="let rowCellPropertyName of rowCellPropertyNames" 
+            class="text-right">
+                {{row[rowCellPropertyName]}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--
+    TODO 1: try to get own property names from object, Object.keys(this.dataRows[0])
+    TODO 2: extend with column align options, e.g. number right align, incl header
+            check how dynamically add a class with an html attribute, see kisp course, css() function?
+-->

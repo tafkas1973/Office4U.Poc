@@ -1,0 +1,7 @@
+﻿cd\
+
+cd Office4u.Article.Poc\Office4U.Articles.Data.Ef.SqlServer
+
+dotnet ef migrations add <migration_name> --context DataContext
+
+dotnet ef database update --context DataContext

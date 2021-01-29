@@ -1,0 +1,6 @@
+.table-hover tbody tr:hover td
+{
+    color:white;
+    background: var(--primary-color);
+    cursor: pointer;
+}

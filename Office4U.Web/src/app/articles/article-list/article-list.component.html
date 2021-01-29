@@ -1,0 +1,66 @@
+<!--TODO: create extra components to reduce code in this file-->
+
+<div @fade>
+  <o4u-title [title]="pageTitle"></o4u-title>
+
+  <button type="button" class="btn btn-primary-outline o4u-filter mt-1 mb-1" (click)="isCollapsed=!isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+    <div *ngIf="isCollapsed" class="">
+      Search Filters
+      <span [hidden]="!articleParams.code" class="badge badge-primary ml-1 mr-1">
+        code {{articleParams.code}}
+      </span>
+      <span [hidden]="!articleParams.supplierId" class="badge badge-primary ml-1 mr-1">
+        supplierId {{articleParams.supplierId}}
+      </span>
+      <span [hidden]="!articleParams.supplierReference" class="badge badge-primary ml-1 mr-1">
+        supplierRef {{articleParams.supplierReference}}
+      </span>
+      <span [hidden]="!articleParams.name1" class="badge badge-primary ml-1 mr-1">
+        name {{articleParams.name1}}
+      </span>
+      <span [hidden]="!articleParams.unit" class="badge badge-primary ml-1 mr-1">
+        unit {{articleParams.unit}}
+      </span>
+      <span [hidden]="!articleParams.purchasePriceMin" class="badge badge-primary ml-1 mr-1">
+        price min {{articleParams.purchasePriceMin}}
+      </span>
+      <span [hidden]="!articleParams.purchasePriceMax" class="badge badge-primary ml-1 mr-1">
+        price max {{articleParams.purchasePriceMax}}
+      </span>
+    </div>
+    <div *ngIf="!isCollapsed">Hide Filter</div>
+  </button>
+  <div [collapse]="isCollapsed" [isAnimated]="true">
+    <div class="well well-lg card card-block card-header">
+      <app-article-list-filter [articleParams]="articleParams" (loadArticlesEvent)="onLoadArticles($event)"
+        (resetFiltersEvent)="onResetFilters($event)">
+      </app-article-list-filter>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="text center float-left">
+      <h4 [hidden]="!pagination || pagination?.totalItems == 0">Filter matches - {{pagination?.totalItems}} found,
+        showing
+        page
+        {{pagination?.currentPage}}/{{pagination?.totalPages}}
+      </h4>
+      <h4 [hidden]="pagination?.totalItems != 0">No matching articles found </h4>
+    </div>
+    <div>
+      <a class="nav-link o4u-link float-right" [hidden]="!pagination" (click)="onCreateArticle()"
+        routerLinkActive='active'><i class="fa fa-plus o4u-link mr-2"></i></a>
+    </div>
+  </div>
+
+  <o4u-table [dataRows]="articles" [doubleClickUrl]="'/article/'" [columnTitles]="columnTitles"
+    [rowCellPropertyNames]="rowCellPropertyNames"></o4u-table>
+
+  <div class="d-flex justify-content-end mt-3" *ngIf="pagination?.totalItems > 0">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="onPageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+</div>
