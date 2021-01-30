@@ -25,3 +25,12 @@
 span.badge.badge-primary {
     padding: 4px;
 }
+
+.filter-badge {
+    font-size:100%;
+}
+
+.filter-badge-title {
+    font-weight:350; 
+    font-size:100%;
+}

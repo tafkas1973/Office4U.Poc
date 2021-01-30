@@ -5,31 +5,31 @@
 
   <button type="button" class="btn btn-primary-outline o4u-filter mt-1 mb-1" (click)="isCollapsed=!isCollapsed"
     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-    <div *ngIf="isCollapsed">
+    <div *ngIf="isCollapsed" class="row pl-2 pr-2">
       Expand Filters
-      <span [hidden]="!articleParams.code" class="badge badge-primary ml-1 mr-1">
-        code {{articleParams.code}}
+      <span [hidden]="!articleParams.code" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">code </span>{{articleParams.code}}
       </span>
-      <span [hidden]="!articleParams.supplierId" class="badge badge-primary ml-1 mr-1">
-        supplierId {{articleParams.supplierId}}
+      <span [hidden]="!articleParams.supplierId" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">supplierId </span>{{articleParams.supplierId}}
       </span>
-      <span [hidden]="!articleParams.supplierReference" class="badge badge-primary ml-1 mr-1">
-        supplierRef {{articleParams.supplierReference}}
+      <span [hidden]="!articleParams.supplierReference" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">supplierRef </span>{{articleParams.supplierReference}}
       </span>
-      <span [hidden]="!articleParams.name1" class="badge badge-primary ml-1 mr-1">
-        name {{articleParams.name1}}
+      <span [hidden]="!articleParams.name1" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">name </span>{{articleParams.name1}}
       </span>
-      <span [hidden]="!articleParams.unit" class="badge badge-primary ml-1 mr-1">
-        unit {{articleParams.unit}}
+      <span [hidden]="!articleParams.unit" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">unit </span>{{articleParams.unit}}
       </span>
-      <span [hidden]="!articleParams.purchasePriceMin" class="badge badge-primary ml-1 mr-1">
-        price min {{articleParams.purchasePriceMin}}
+      <span [hidden]="!articleParams.purchasePriceMin" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">price min </span>{{articleParams.purchasePriceMin}}
       </span>
-      <span [hidden]="!articleParams.purchasePriceMax" class="badge badge-primary ml-1 mr-1">
-        price max {{articleParams.purchasePriceMax}}
+      <span [hidden]="!articleParams.purchasePriceMax" class="badge badge-primary ml-1 mr-1 filter-badge">
+        <span class="filter-badge-title">price max </span>{{articleParams.purchasePriceMax}}
       </span>
     </div>
-    <div *ngIf="!isCollapsed">Collapse Filter</div>
+    <div *ngIf="!isCollapsed" class="row pl-2 pr-2">Collapse Filter</div>
   </button>
   <div [collapse]="isCollapsed" [isAnimated]="true">
     <div class="well well-lg card card-block card-header">
