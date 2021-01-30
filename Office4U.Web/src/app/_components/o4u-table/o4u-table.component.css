@@ -4,3 +4,7 @@
     background: var(--primary-color);
     cursor: pointer;
 }
+
+.column-title {    
+    color: white;
+}

@@ -17,6 +17,11 @@
     margin-left: 5px;
 }
 
+.o4u-filter:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
 span.badge.badge-primary {
     padding: 4px;
 }

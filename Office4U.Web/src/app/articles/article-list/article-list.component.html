@@ -5,8 +5,8 @@
 
   <button type="button" class="btn btn-primary-outline o4u-filter mt-1 mb-1" (click)="isCollapsed=!isCollapsed"
     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-    <div *ngIf="isCollapsed" class="">
-      Search Filters
+    <div *ngIf="isCollapsed">
+      Expand Filters
       <span [hidden]="!articleParams.code" class="badge badge-primary ml-1 mr-1">
         code {{articleParams.code}}
       </span>
@@ -29,7 +29,7 @@
         price max {{articleParams.purchasePriceMax}}
       </span>
     </div>
-    <div *ngIf="!isCollapsed">Hide Filter</div>
+    <div *ngIf="!isCollapsed">Collapse Filter</div>
   </button>
   <div [collapse]="isCollapsed" [isAnimated]="true">
     <div class="well well-lg card card-block card-header">
