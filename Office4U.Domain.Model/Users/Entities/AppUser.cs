@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Identity;
+using Office4U.Common.Extensions;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using Office4U.Common;
 
 namespace Office4U.Domain.Model.Users.Entities
 {
