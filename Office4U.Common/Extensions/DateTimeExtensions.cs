@@ -1,6 +1,6 @@
 using System;
 
-namespace Office4U.Common
+namespace Office4U.Common.Extensions
 {
     public static class DateTimeExtensions
     {
