@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MockQueryable.Moq;
+﻿using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
 using Office4U.Data.Ef.SqlServer;
@@ -12,7 +11,6 @@ using Office4U.WriteApplication.Articles.Commands;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using Office4U.WriteApplication.Interfaces.IOC;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,25 +18,6 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
 {
     public class CreateArticleCommandTests : DatabaseFixture
     {
-        private List<Article> _testArticles;
-        private Mock<DbSet<Article>> _articleDbSetMock;
-        private Mock<DataContext> _dataContextMock;
-        private Mock<IArticleRepository> _articleRepository;
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-
-        [SetUp]
-        public void SetUp()
-        {
-            // TODO: find solution with in memory db, without need to mock context
-            _testArticles = ArticleList.GetDefaultList();
-            _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
-            _dataContextMock = new Mock<DataContext>();
-            _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
-            _articleRepository = new Mock<IArticleRepository>();
-            _unitOfWorkMock = new Mock<IUnitOfWork>();
-            _unitOfWorkMock.Setup(uow => uow.ArticleRepository).Returns(_articleRepository.Object);
-        }
-
         [Test]
         public async Task Create_ValidObject_ReturnsNewArticle()
         {
@@ -73,15 +52,23 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         public async Task Create_InvalidObject_ReturnsNull()
         {
             //Arrange
+            var testArticles = ArticleList.GetDefaultList();
+            var articleDbSetMock = testArticles.AsQueryable().BuildMockDbSet();
+            var dataContextMock = new Mock<DataContext>();
+            dataContextMock.Setup(m => m.Articles).Returns(articleDbSetMock.Object);
+            var articleRepository = new Mock<IArticleRepository>();
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            unitOfWorkMock.Setup(uow => uow.ArticleRepository).Returns(articleRepository.Object);
+
             var articleForCreation = new ArticleForCreationDto();
-            var createArticleCommand = new CreateArticleCommand(_unitOfWorkMock.Object);
-            _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
+            var createArticleCommand = new CreateArticleCommand(unitOfWorkMock.Object);
+            unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
 
             //Act
             var result = await createArticleCommand.Execute(articleForCreation);
 
             //Assert
-            _articleRepository.Verify(r => r.Add(It.IsAny<Article>()), Times.Once);
+            articleRepository.Verify(r => r.Add(It.IsAny<Article>()), Times.Once);
             Assert.That(result, Is.Null);
         }
     }

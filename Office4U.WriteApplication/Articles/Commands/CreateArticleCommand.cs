@@ -19,7 +19,7 @@ namespace Office4U.WriteApplication.Articles.Commands
 
         public async Task<ArticleForReturnDto> Execute(ArticleForCreationDto articleForCreation)
         {
-            // TODO: inject correct project AutoMapper
+            // TODO: inject correct project AutoMapper & test! (is now a hidden dependency)
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
             var newArticle = mapper.Map<Article>(articleForCreation);
 

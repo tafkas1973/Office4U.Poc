@@ -8,7 +8,6 @@ using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Presentation.Controller.Articles;
 using Office4U.ReadApplication.Articles.DTOs;
 using Office4U.ReadApplication.Articles.Interfaces;
-using Office4U.Tests.Builders;
 using Office4U.Tests.TestData;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
