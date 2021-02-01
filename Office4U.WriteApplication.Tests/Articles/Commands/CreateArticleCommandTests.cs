@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
-using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Tests.TestData;
@@ -41,7 +40,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         }
 
         [Test]
-        public void Create_ValidObject_ReturnsNewArticle()
+        public async Task Create_ValidObject_ReturnsNewArticle()
         {
             //Arrange
             var articleForCreation = new ArticleForCreationDto()
@@ -54,15 +53,33 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 Unit = "ST"
             };
             var createArticleCommand = new CreateArticleCommand(_unitOfWorkMock.Object, _writeMapper);
+            _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(true));
 
             //Act
-            var result = createArticleCommand.Execute(articleForCreation);
+            var result = await createArticleCommand.Execute(articleForCreation);
 
             //Assert
             _articleRepository.Verify(r => r.Add(It.IsAny<Article>()), Times.Once);
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Result.GetType(), Is.EqualTo(Task.FromResult(typeof(ArticleForReturnDto))));
-            Assert.That(result.Id, Is.EqualTo(0));
+            Assert.That(result.GetType(), Is.EqualTo(typeof(ArticleForReturnDto)));
+            Assert.That(result.Name1, Is.EqualTo(articleForCreation.Name1));
+        }
+
+
+        [Test]
+        public async Task Create_InvalidObject_ReturnsNull()
+        {
+            //Arrange
+            var articleForCreation = new ArticleForCreationDto();
+            var createArticleCommand = new CreateArticleCommand(_unitOfWorkMock.Object, _writeMapper);
+            _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
+
+            //Act
+            var result = await createArticleCommand.Execute(articleForCreation);
+
+            //Assert
+            _articleRepository.Verify(r => r.Add(It.IsAny<Article>()), Times.Once);
+            Assert.That(result, Is.Null);
         }
     }
 }
