@@ -47,10 +47,6 @@ namespace Office4U.Domain.Model.Articles.Entities
             Code = code;
         }
 
-        public void SetName1(string name1)
-        {
-            Name1 = name1;
-        }
 
         public void AddPhotos(ICollection<ArticlePhoto> photos)
         {

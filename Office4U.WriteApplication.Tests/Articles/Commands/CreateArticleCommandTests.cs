@@ -32,7 +32,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 SupplierReference = "sup ref",
                 PurchasePrice = 99.99M,
                 Unit = "ST"
-            };
+            };            
             var createArticleCommand = new CreateArticleCommand(unitOfWork);
             var articleCountBefore = TestContext.Articles.Count();
 
@@ -46,7 +46,6 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             Assert.That(result.Name1, Is.EqualTo(articleForCreation.Name1));
             Assert.That(TestContext.Articles.Count, Is.EqualTo(articleCountBefore + 1));
         }
-
 
         [Test]
         public async Task Create_InvalidObject_ReturnsNull()
