@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Office4U.Domain.Model.Articles.Entities;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Helpers;
@@ -10,7 +11,6 @@ namespace Office4U.WriteApplication.Articles.Commands
     public class CreateArticleCommand : ICreateArticleCommand
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
         public CreateArticleCommand(
             IUnitOfWork unitOfWork,
@@ -18,20 +18,19 @@ namespace Office4U.WriteApplication.Articles.Commands
             )
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task<ArticleForReturnDto> Execute(ArticleForCreationDto articleForCreation)
         {
             // TODO: inject correct project AutoMapper
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
-            var newArticle = mapper.Map<Domain.Model.Articles.Entities.Article>(articleForCreation);
+            var newArticle = mapper.Map<Article>(articleForCreation);
 
             _unitOfWork.ArticleRepository.Add(newArticle);
 
             if (await _unitOfWork.Commit())
             {
-                var articleForReturnDto = _mapper.Map<ArticleForReturnDto>(newArticle);                
+                var articleForReturnDto = mapper.Map<ArticleForReturnDto>(newArticle);                
                 return articleForReturnDto;
             }
 

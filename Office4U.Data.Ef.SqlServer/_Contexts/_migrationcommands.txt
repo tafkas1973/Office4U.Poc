@@ -1,7 +1,11 @@
-﻿cd\
+﻿uncomment line in DataContext - OnConfiguring
+
+cd\
 
 cd Office4u.Poc\Office4U.Articles.Data.Ef.SqlServer
 
-dotnet ef migrations add <migration_name> --context DataContext
+dotnet ef migrations add <migration_name> --context DataContext  (+ output _Migrations)
 
 dotnet ef database update --context DataContext
+
+comment line in DataContext - OnConfiguring

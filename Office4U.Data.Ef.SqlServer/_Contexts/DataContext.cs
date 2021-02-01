@@ -46,7 +46,7 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
         // TODO: read project configuration
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
+            // optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
         }
     }
 }
