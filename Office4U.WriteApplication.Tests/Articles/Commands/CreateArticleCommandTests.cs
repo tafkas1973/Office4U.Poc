@@ -40,7 +40,6 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             _articleRepository = new Mock<IArticleRepository>();
             _unitOfWorkMock = new Mock<IUnitOfWork>();
             _unitOfWorkMock.Setup(uow => uow.ArticleRepository).Returns(_articleRepository.Object);
-            _writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<Helpers.AutoMapperProfiles>()));
         }
 
         [Test]
@@ -48,7 +47,6 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         {
             //Arrange
             var unitOfWork = new UnitOfWork(TestContext, new ArticleRepository(TestContext), null);
-            var writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
 
             var articleForCreation = new ArticleForCreationDto()
             {
@@ -59,7 +57,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 PurchasePrice = 99.99M,
                 Unit = "ST"
             };
-            var createArticleCommand = new CreateArticleCommand(unitOfWork, writeMapper);
+            var createArticleCommand = new CreateArticleCommand(unitOfWork);
             var articleCountBefore = TestContext.Articles.Count();
 
             //Act
@@ -79,7 +77,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         {
             //Arrange
             var articleForCreation = new ArticleForCreationDto();
-            var createArticleCommand = new CreateArticleCommand(_unitOfWorkMock.Object, _writeMapper);
+            var createArticleCommand = new CreateArticleCommand(_unitOfWorkMock.Object);
             _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
 
             //Act

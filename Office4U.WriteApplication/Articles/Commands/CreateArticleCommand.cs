@@ -12,10 +12,7 @@ namespace Office4U.WriteApplication.Articles.Commands
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateArticleCommand(
-            IUnitOfWork unitOfWork,
-            IMapper mapper
-            )
+        public CreateArticleCommand(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -30,7 +27,7 @@ namespace Office4U.WriteApplication.Articles.Commands
 
             if (await _unitOfWork.Commit())
             {
-                var articleForReturnDto = mapper.Map<ArticleForReturnDto>(newArticle);                
+                var articleForReturnDto = mapper.Map<ArticleForReturnDto>(newArticle);
                 return articleForReturnDto;
             }
 
