@@ -19,10 +19,9 @@ namespace Office4U.WriteApplication.Articles.Commands
 
         public async Task<bool> Execute(ArticleForUpdateDto articleForUpdate)
         {
-            Article article = 
-                await _unitOfWork.ArticleRepository.GetArticleByIdAsync(articleForUpdate.Id);
+            Article article = await _unitOfWork.ArticleRepository.GetArticleByIdAsync(articleForUpdate.Id);
 
-            // TODO: inject correct project AutoMapper
+            // TODO: inject (correct) project AutoMapper
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfiles>()));
             mapper.Map(articleForUpdate, article);
 
