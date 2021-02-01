@@ -33,6 +33,7 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
         private Mock<ICreateArticleCommand> _createCommandMock;
         private Mock<IUpdateArticleCommand> _updateCommandMock;
         private Mock<IDeleteArticleCommand> _deleteCommandMock;
+
         private PagedList<ArticleDto> _articlesDtoPagedList;
         private Mapper _readMapper;
         private Mapper _writeMapper;

@@ -22,5 +22,16 @@ namespace Office4U.Domain.Model.Articles.Entities
             Assert.That(result.PurchasePrice, Is.EqualTo(123.45M));
             Assert.That(result.Unit, Is.EqualTo("ST"));
         }
+
+        public void Create_SetPhoto_ThrowsNoExceptions()
+        {
+            //Arrange
+            var article = Article.Create("new code", "new name", "sup id", "sup ref", 123.45M, "ST");
+
+            //Act
+            article.AddPhoto(ArticlePhoto.Create("www.google.be", true));
+
+            //Assert
+        }
     }
 }

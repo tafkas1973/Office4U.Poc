@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
@@ -7,7 +6,6 @@ using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Tests.TestData;
-using Office4U.WriteApplication.Interfaces.IOC;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -38,7 +36,7 @@ namespace Office4U.Data.Ef.SqlServer.UnitOfWork
         public async Task Commit_WithValidConditions_PerformsCommit()
         {
             //Arrange
-            _testArticles.First().Code = "a changed code";
+            _testArticles.First().SetCode("a changed code");
             _articleRepository.Update(_testArticles.First());
             _dataContextMock.Setup(m => m.SaveChangesAsync(new CancellationToken())).Returns(Task.FromResult(1));
 
@@ -54,7 +52,7 @@ namespace Office4U.Data.Ef.SqlServer.UnitOfWork
         public async Task Commit_WithInvalidConditions_DoesNotPerformCommit()
         {
             //Arrange
-            _testArticles.First().Code = "a changed code";
+            _testArticles.First().SetCode("a changed code");
             _articleRepository.Update(_testArticles.First());
             _dataContextMock.Setup(m => m.SaveChangesAsync(new CancellationToken())).Returns(Task.FromResult(0));
 

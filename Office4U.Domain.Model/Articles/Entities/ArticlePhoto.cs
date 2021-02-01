@@ -1,18 +1,24 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-// TODO1: make PhotoBase class
-// TODO2: implement discriminator
-
 namespace Office4U.Domain.Model.Articles.Entities
 {
     [Table("ArticlePhotos")]
     public class ArticlePhoto
     {
-        public int Id { get; set; }
-        public string Url { get; set; }
-        public bool IsMain { get; set; }
-        public string PublicId { get; set; }
-        public Article Article { get; set; }
-        public int ArticleId { get; set; }
+        public int Id { get; private set; }
+        public string Url { get; private set; }
+        public bool IsMain { get; private set; }
+        public string PublicId { get; private set; }
+        public Article Article { get; private set; }
+        public int ArticleId { get; private set; }
+
+        public static ArticlePhoto Create(string url, bool isMain)
+        {
+            return new ArticlePhoto()
+            {
+                Url = url,
+                IsMain = isMain
+            };
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         {
             //Arrange
             var updatedArticle = _testArticles.First();
-            updatedArticle.Code = "1st article updated";
+            updatedArticle.SetCode("1st article updated");
             var isContextUpdateCalled = false;
             //_dataContextMock.Setup(m => m.Set<Article>()).Returns(_articleDbSetMock.Object).Verifiable();
             _dataContextMock.Setup(m => m.Update(It.IsAny<object>())).Callback(() => isContextUpdateCalled = true);
