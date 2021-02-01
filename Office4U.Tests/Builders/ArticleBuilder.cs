@@ -1,7 +1,7 @@
 ﻿using Office4U.Domain.Model.Articles.Entities;
 using System.Collections.Generic;
 
-namespace Retail4U.Office4U.WebApi.Tools.Data
+namespace Office4U.Tests.Builders
 {
     public class ArticleBuilder
     {

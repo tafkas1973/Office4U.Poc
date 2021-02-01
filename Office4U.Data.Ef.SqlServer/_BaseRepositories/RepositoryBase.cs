@@ -1,7 +1,7 @@
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.WriteApplication.Interfaces.IOC;
 
-namespace Office4U.Data.Ef.SqlServer.Repositories
+namespace Office4U.Data.Ef.SqlServer.BaseRepositories
 {
     public class RepositoryBase : IRepositoryBase
     {

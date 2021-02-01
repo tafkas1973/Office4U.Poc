@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Moq;
 using NUnit.Framework;
 using Office4U.Articles.ImportExport.Api.Controllers;
@@ -9,11 +8,12 @@ using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Presentation.Controller.Articles;
 using Office4U.ReadApplication.Articles.DTOs;
 using Office4U.ReadApplication.Articles.Interfaces;
+using Office4U.Tests.Builders;
+using Office4U.Tests.TestData;
 using Office4U.WriteApplication.Articles.DTOs;
 using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using Office4U.WriteApplication.Interfaces.IOC;
-using Retail4U.Office4U.WebApi.Tools.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,11 +42,7 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
         public void Setup()
         {
             _articleParams = new ArticleParams();
-            _testArticles = new List<Article>() {
-                new ArticleBuilder().WithId(1).WithCode("Article1").WithName1("1st article").WithSupplierId("sup1").WithSupplierReference("sup1 ref 1").WithUnit("ST").WithPurchasePrice(10.00M).Build(),
-                new ArticleBuilder().WithId(2).WithCode("Article2").WithName1("2nd article").WithSupplierId("sup2").WithSupplierReference("sup1 ref 2").WithUnit("ST").WithPurchasePrice(20.00M).Build(),
-                new ArticleBuilder().WithId(3).WithCode("Article3").WithName1("3rd article").WithSupplierId("sup3").WithSupplierReference("sup2 ref 1").WithUnit("ST").WithPurchasePrice(30.00M).Build()
-            }.AsEnumerable();
+            _testArticles = ArticleList.GetShortList().AsEnumerable();
             var articlesPagedList = new PagedList<Article>(items: _testArticles, count: 3, pageNumber: 1, pageSize: 10);
 
             _readMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<ReadApplication.Helpers.AutoMapperProfiles>()));

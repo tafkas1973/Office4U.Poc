@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace Office4U.ReadApplication.Articles.Queries
 {
-    // TODO: implement MediatR ?
-
     public class GetArticlesQuery : IGetArticlesQuery
     {
         private readonly IReadOnlyArticleRepository _readOnlyArticleRepository;

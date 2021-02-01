@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Office4U.Presentation.Controller\Office4U.Presentation.Controller.csproj" />
+    <ProjectReference Include="..\..\Office4U.Tests\Office4U.Tests.csproj" />
   </ItemGroup>
 
 </Project>
