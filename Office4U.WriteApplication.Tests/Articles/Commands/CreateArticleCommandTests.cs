@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
@@ -26,7 +25,6 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         private Mock<DataContext> _dataContextMock;
         private Mock<IArticleRepository> _articleRepository;
         private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mapper _writeMapper;
 
         [SetUp]
         public void SetUp()

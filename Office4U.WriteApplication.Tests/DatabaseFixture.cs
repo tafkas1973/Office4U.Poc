@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Office4U.Data.Ef.SqlServer.Contexts;
-using Office4U.Tests.TestData;
 using System;
 
 namespace Office4U.Data.Ef.SqlServer
@@ -8,22 +8,34 @@ namespace Office4U.Data.Ef.SqlServer
     public class DatabaseFixture : IDisposable
     {
         public DataContext TestContext { get; private set; }
+        private readonly SqliteConnection _connection;
+        private readonly DbContextOptions _options;
 
         public DatabaseFixture()
         {
-            var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(DateTime.Now.ToString("yyyyMMddHHmmss") + "_TestDatabase")
-                //.UseSqlite(new SqliteConnection("DataSource=:memory:")).Options;
+            //var options = new DbContextOptionsBuilder<DataContext>()
+            //    .UseInMemoryDatabase(DateTime.Now.ToString("yyyyMMddHHmmss") + "_TestDatabase")                
+            //    .Options;
+
+            //TestContext = new DataContext(options);
+            //TestContext.Articles.AddRange(ArticleList.GetDefaultList());
+            //TestContext.SaveChanges();
+
+            _connection = new SqliteConnection("datasource=:memory:");
+            _connection.Open();
+
+            _options = new DbContextOptionsBuilder()
+                .UseSqlite(_connection)
                 .Options;
 
-            TestContext = new DataContext(options);
-            TestContext.Articles.AddRange(ArticleList.GetDefaultList());
-            TestContext.SaveChanges();
+            TestContext = new DataContext(_options);
+            TestContext.Database.EnsureCreated();
         }
 
         public void Dispose()
         {
-            TestContext.Dispose();
+            // TestContext.Dispose();
+            _connection.Close();
         }
     }
 }

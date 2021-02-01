@@ -5,7 +5,6 @@ using NUnit.Framework;
 using Office4U.Common;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Articles.Entities;
-using Office4U.Tests.Builders;
 using Office4U.Tests.TestData;
 using System.Collections.Generic;
 using System.Linq;
