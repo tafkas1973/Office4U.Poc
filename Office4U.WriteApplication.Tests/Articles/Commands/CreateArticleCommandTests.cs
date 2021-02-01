@@ -8,7 +8,6 @@ using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Data.Ef.SqlServer.UnitOfWork;
 using Office4U.Domain.Model.Articles.Entities;
-using Office4U.ReadApplication.Helpers;
 using Office4U.Tests.TestData;
 using Office4U.WriteApplication.Articles.Commands;
 using Office4U.WriteApplication.Articles.DTOs;
