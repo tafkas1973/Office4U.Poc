@@ -5,7 +5,7 @@ using Office4U.WriteApplication.Helpers;
 using Office4U.WriteApplication.Interfaces.IOC;
 using System.Threading.Tasks;
 
-namespace Office4U.Articles.WriteApplication.Article.Commands
+namespace Office4U.WriteApplication.Articles.Commands
 {
     public class CreateArticleCommand : ICreateArticleCommand
     {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using Office4U.Articles.WriteApplication.Article.Commands;
 using Office4U.Data.Ef.SqlServer.Articles.Repositories;
 using Office4U.Data.Ef.SqlServer.UnitOfWork;
 using Office4U.Data.Ef.SqlServer.Users.Repositories;

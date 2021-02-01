@@ -46,7 +46,7 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
             var articlesPagedList = new PagedList<Article>(items: _testArticles, count: 3, pageNumber: 1, pageSize: 10);
 
             _readMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<ReadApplication.Helpers.AutoMapperProfiles>()));
-            _writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<Office4U.WriteApplication.Helpers.AutoMapperProfiles>()));
+            _writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<WriteApplication.Helpers.AutoMapperProfiles>()));
 
             _listQueryMock = new Mock<IGetArticlesQuery>();
             _singleQueryMock = new Mock<IGetArticleQuery>();

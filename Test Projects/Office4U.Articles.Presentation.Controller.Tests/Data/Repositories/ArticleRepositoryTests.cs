@@ -25,8 +25,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
         private List<Article> _testArticles;
         private Mock<DbSet<Article>> _articleDbSetMock;
         private Mock<DataContext> _dataContextMock;
-        private Mock<ReadOnlyDataContext> _readOnlyDataContextMock;
-        private readonly int _defaultPageSize = 10;
+        private Mock<ReadOnlyDataContext> _readOnlyDataContextMock;        
 
         [SetUp]
         public void Setup()
@@ -58,9 +57,7 @@ namespace Office4U.Articles.ImportExport.Api.Data.Repositories
             _unitOfWork = new UnitOfWork(_dataContextMock.Object);
             _articleRepository = _unitOfWork.ArticleRepository;
             _readOnlyArticleRepository = new ReadOnlyArticleRepository(_readOnlyDataContextMock.Object);
-        }
-
-     
+        }   
 
         [Test]
         //[Ignore("Problem with generic in setup")]
