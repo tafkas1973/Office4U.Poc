@@ -14,6 +14,7 @@ using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Articles.Interfaces.IOC;
 using Office4U.WriteApplication.Helpers;
 using Office4U.WriteApplication.Interfaces.IOC;
+using Office4U.WriteApplication.User.Interfaces.IOC;
 
 namespace Office4U.WriteApplication.Extensions
 {
@@ -34,6 +35,7 @@ namespace Office4U.WriteApplication.Extensions
 
             // write app
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArticleRepository, ArticleRepository>();
 
             services.AddScoped<ICreateArticleCommand, CreateArticleCommand>();
