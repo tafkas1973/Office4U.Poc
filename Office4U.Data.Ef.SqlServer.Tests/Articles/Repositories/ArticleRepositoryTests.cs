@@ -22,10 +22,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public void Setup()
         {
             _testArticles = ArticleList.GetDefaultList();
-            // sort by name1 : 10th article/11th article/12th article/1st article/2nd article/3rd article/4th article/5th article/6th article/7th article/8th article/9th article
-            // sort by supref : sup1 ref 1/sup1 ref 2/sup2 ref 1/sup2 ref 2/sup3 ref 1/sup3 ref 2/sup4 ref 1/sup4 ref 2/sup5 ref 1/sup5 ref 2/sup6 ref 1/sup6 ref 2
-
-            _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
+             _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
             _dataContextMock = new Mock<DataContext>();
             _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
             _articleRepository = new ArticleRepository(_dataContextMock.Object);
