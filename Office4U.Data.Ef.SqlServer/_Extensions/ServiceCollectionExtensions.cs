@@ -17,14 +17,11 @@ namespace Office4U.Data.Ef.SqlServer.Extensions
         {
             services.AddDbContext<ReadOnlyDataContext>(options =>
             {
-                // TODO: read project configuration
-                // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddDbContext<DataContext>(options =>
             {
-                // options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
         }
 

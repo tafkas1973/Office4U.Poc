@@ -13,14 +13,6 @@ namespace Office4U.Data.Ef.SqlServer
 
         public DatabaseFixture()
         {
-            //var options = new DbContextOptionsBuilder<DataContext>()
-            //    .UseInMemoryDatabase(DateTime.Now.ToString("yyyyMMddHHmmss") + "_TestDatabase")                
-            //    .Options;
-
-            //TestContext = new DataContext(options);
-            //TestContext.Articles.AddRange(ArticleList.GetDefaultList());
-            //TestContext.SaveChanges();
-
             _connection = new SqliteConnection("datasource=:memory:");
             _connection.Open();
 

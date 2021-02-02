@@ -30,7 +30,7 @@ namespace Office4U.Data.Ef.SqlServer
 
             _readOnlyOptions = new DbContextOptionsBuilder<ReadOnlyDataContext>()
                 .UseSqlite(_connection)
-                .Options;           
+                .Options;
             TestReadOnlyContext = new ReadOnlyDataContext(_readOnlyOptions);
             TestReadOnlyContext.Database.EnsureCreated();
         }

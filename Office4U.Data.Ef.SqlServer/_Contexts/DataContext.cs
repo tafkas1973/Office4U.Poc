@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.Domain.Model.Users.Entities;
 
@@ -18,7 +19,8 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
            IdentityUserToken<int>
        >
     {
-        public DataContext() { }
+
+        public DataContext() { } // for testing purposes only
         public DataContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Article> Articles { get; set; }
@@ -43,10 +45,9 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
 
 
         // used for migrations
-        // TODO: read project configuration
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
         }
     }
 }

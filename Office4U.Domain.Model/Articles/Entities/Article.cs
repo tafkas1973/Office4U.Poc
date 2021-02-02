@@ -36,12 +36,6 @@ namespace Office4U.Domain.Model.Articles.Entities
             return article;
         }
 
-        // TODO: to be removed !!! only temporary for not breaking tests
-        public void SetId(int id)
-        {
-            Id = id;
-        }
-
         public void SetCode(string code)
         {
             Code = code;
