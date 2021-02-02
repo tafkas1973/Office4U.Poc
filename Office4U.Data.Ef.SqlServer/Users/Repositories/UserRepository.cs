@@ -14,18 +14,18 @@ namespace Office4U.Data.Ef.SqlServer.Users.Repositories
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await Context.Users.FindAsync(id);
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
-            return await _context.Users
+            return await Context.Users
                 .SingleOrDefaultAsync(u => u.UserName == username);
         }
 
         public async Task<PagedList<AppUser>> GetUsersAsync(UserParams userParams)
         {
-            var users = _context.Users
+            var users = Context.Users
                 .AsQueryable();
 
             return await PagedList<AppUser>.CreateAsync(

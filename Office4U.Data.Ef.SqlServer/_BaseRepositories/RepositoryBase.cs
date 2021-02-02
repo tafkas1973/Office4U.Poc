@@ -5,25 +5,25 @@ namespace Office4U.Data.Ef.SqlServer.BaseRepositories
 {
     public class RepositoryBase : IRepositoryBase
     {
-        protected readonly DataContext _context;
+        protected readonly DataContext Context;
         public RepositoryBase(DataContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public void Add<T>(T entity) where T : class
         {
-            _context.Add(entity);
+            Context.Add(entity);
         }
 
         public void Update<T>(T entity)
         {
-            _context.Update(entity);
+            Context.Update(entity);
         }
 
         public void Delete<T>(T entity) where T : class
         {
-            _context.Remove(entity);
+            Context.Remove(entity);
         }
     }
 }

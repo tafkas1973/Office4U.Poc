@@ -13,7 +13,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 
         public async Task<Article> GetArticleByIdAsync(int id)
         {
-            return await _context.Articles
+            return await Context.Articles
                 .Include(a => a.Photos)
                 .SingleOrDefaultAsync(a => a.Id == id);
         }
