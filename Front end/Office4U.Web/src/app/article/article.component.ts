@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'articles.component.html',
+  templateUrl: 'article.component.html',
   providers: []
 })
 export class ArticlesComponent {}

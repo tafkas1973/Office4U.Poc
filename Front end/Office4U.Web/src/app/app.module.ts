@@ -40,7 +40,6 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

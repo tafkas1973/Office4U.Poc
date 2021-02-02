@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
-import { ArticleEditComponent } from '../../articles/article-edit/article-edit.component';
+import { ArticleEditComponent } from '../../article/article-edit/article-edit.component';
 
 @Injectable({
   providedIn: 'root'

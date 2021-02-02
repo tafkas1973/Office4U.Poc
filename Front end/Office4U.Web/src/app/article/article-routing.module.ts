@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { ArticlesComponent } from "./articles.component";
+import { ArticlesComponent } from "./article.component";
 import { ArticleListFilterComponent } from "./article-list-filter/article-list-filter.component";
 import { ArticleListComponent } from "./article-list/article-list.component";
 import { ArticleCreateModalComponent } from "./article-create-modal/article-create-modal.component";
@@ -40,7 +40,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ArticlesRoutingModule {
+export class ArticleRoutingModule {
   static components = [
     ArticleCreateModalComponent,
     ArticleDetailComponent,
