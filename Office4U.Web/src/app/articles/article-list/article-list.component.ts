@@ -4,7 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { fade } from '../../_animations/animations';
+import { fade } from '../../_animations/animation';
 
 import { Article, ArticleForCreation } from '../../_models/article';
 import { ArticleParams } from '../../_models/articleParams';

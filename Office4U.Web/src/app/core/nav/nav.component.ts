@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AccountService } from '../_services/account.service';
-import { StyleManagerService } from '../_services/style-manager.service';
+import { AccountService } from '../../_services/account.service';
+import { StyleManagerService } from '../../_services/style-manager.service';
 
 @Component({
   selector: 'app-nav',

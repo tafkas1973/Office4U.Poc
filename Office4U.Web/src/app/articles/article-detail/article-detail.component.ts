@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { Article } from '../../_models/article';
 import { ArticleService } from '../../_services/article.service';
-import { fade } from '../../_animations/animations';
+import { fade } from '../../_animations/animation';
 
 @Component({
   selector: 'app-article-detail',
