@@ -23,6 +23,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         private Mock<DataContext> _dataContextMock;
         private Mock<IArticleRepository> _articleRepository;
         private Mock<IUnitOfWork> _unitOfWorkMock;
+        private Mapper _writeMapper;
 
         [SetUp]
         public void SetUp()
@@ -35,6 +36,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             _articleRepository = new Mock<IArticleRepository>();
             _unitOfWorkMock = new Mock<IUnitOfWork>();
             _unitOfWorkMock.Setup(uow => uow.ArticleRepository).Returns(_articleRepository.Object);
+            _writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<Helpers.AutoMapperProfiles>()));
         }
 
         [Test]
@@ -49,7 +51,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 SupplierReference = "sup ref",
                 PurchasePrice = 99.99M
             };
-            var updateArticleCommand = new UpdateArticleCommand(_unitOfWorkMock.Object);
+            var updateArticleCommand = new UpdateArticleCommand(_unitOfWorkMock.Object, _writeMapper);
             _articleRepository.Setup(r => r.GetArticleByIdAsync(articleForUpdate.Id)).Returns(Task.FromResult(_testArticles.First()));
             _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(true));
 
@@ -75,7 +77,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 SupplierReference = "sup ref",
                 PurchasePrice = 99.99M
             };
-            var updateArticleCommand = new UpdateArticleCommand(_unitOfWorkMock.Object);
+            var updateArticleCommand = new UpdateArticleCommand(_unitOfWorkMock.Object, _writeMapper);
             _articleRepository.Setup(r => r.GetArticleByIdAsync(articleForUpdate.Id)).Returns(Task.FromResult(_testArticles.First()));
             _unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
 

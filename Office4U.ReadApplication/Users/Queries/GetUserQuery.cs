@@ -32,17 +32,16 @@ namespace Office4U.ReadApplication.Users.Queries
         {
             var appUser = await _readOnlyUserRepository.GetUserByNameAsync(name);
 
-            // TODO: use automapper
-            //var appUserDto = _mapper.Map<AppUserDto>(appUser);
+            var appUserDto = _mapper.Map<AppUserDto>(appUser);
 
-            var appUserDto = new AppUserDto()
-            {
-                Id = appUser.Id,
-                Age = appUser.GetAge(),
-                UserName = appUser.UserName,
-                Created = appUser.Created,
-                LastActive = appUser.LastActive
-            };
+            //var appUserDto = new AppUserDto()
+            //{
+            //    Id = appUser.Id,
+            //    Age = appUser.GetAge(),
+            //    UserName = appUser.UserName,
+            //    Created = appUser.Created,
+            //    LastActive = appUser.LastActive
+            //};
 
             return appUserDto;
         }

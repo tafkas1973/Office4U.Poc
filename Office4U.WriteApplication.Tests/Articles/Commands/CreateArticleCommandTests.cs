@@ -1,4 +1,5 @@
-﻿using MockQueryable.Moq;
+﻿using AutoMapper;
+using MockQueryable.Moq;
 using Moq;
 using NUnit.Framework;
 using Office4U.Data.Ef.SqlServer;
@@ -18,6 +19,14 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
 {
     public class CreateArticleCommandTests : DatabaseFixture
     {
+        private Mapper _writeMapper;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _writeMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<Helpers.AutoMapperProfiles>()));
+        }
+
         [Test]
         public async Task Create_ValidObject_ReturnsNewArticle()
         {
@@ -32,8 +41,8 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 SupplierReference = "sup ref",
                 PurchasePrice = 99.99M,
                 Unit = "ST"
-            };            
-            var createArticleCommand = new CreateArticleCommand(unitOfWork);
+            };
+            var createArticleCommand = new CreateArticleCommand(unitOfWork, _writeMapper);
             var articleCountBefore = TestContext.Articles.Count();
 
             //Act
@@ -60,7 +69,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             unitOfWorkMock.Setup(uow => uow.ArticleRepository).Returns(articleRepository.Object);
 
             var articleForCreation = new ArticleForCreationDto();
-            var createArticleCommand = new CreateArticleCommand(unitOfWorkMock.Object);
+            var createArticleCommand = new CreateArticleCommand(unitOfWorkMock.Object, _writeMapper);
             unitOfWorkMock.Setup(uow => uow.Commit()).Returns(Task.FromResult(false));
 
             //Act

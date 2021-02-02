@@ -12,7 +12,6 @@ using Office4U.ReadApplication.Users.Queries;
 using Office4U.WriteApplication.Articles.Commands;
 using Office4U.WriteApplication.Articles.Interfaces;
 using Office4U.WriteApplication.Articles.Interfaces.IOC;
-using Office4U.WriteApplication.Helpers;
 using Office4U.WriteApplication.Interfaces.IOC;
 using Office4U.WriteApplication.User.Interfaces.IOC;
 
@@ -22,7 +21,8 @@ namespace Office4U.WriteApplication.Extensions
     {
         public static void RegisterApplicationServices(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddAutoMapper(typeof(ReadApplication.Helpers.AutoMapperProfiles).Assembly);
+            services.AddAutoMapper(typeof(WriteApplication.Helpers.AutoMapperProfiles).Assembly);
 
             // readonly app
             services.AddScoped<IReadOnlyArticleRepository, ReadOnlyArticleRepository>();

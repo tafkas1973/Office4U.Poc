@@ -2,10 +2,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Office4U.Domain.Model.Users.Entities
 {
-
-    // TODO1: make PhotoBase class
-    // TODO2: implement discriminator
-
     [Table("AppUserPhotos")]
     public class AppUserPhoto
     {

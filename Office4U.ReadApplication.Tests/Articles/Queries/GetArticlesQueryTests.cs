@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using AutoMapper;
+using Moq;
 using NUnit.Framework;
 using Office4U.Common;
 using Office4U.Domain.Model.Articles.Entities;
@@ -17,6 +18,7 @@ namespace Office4U.ReadApplication.Articles.Queries
         private ArticleParams _articleParams;
         private IEnumerable<Article> _testArticles;
         private PagedList<Article> _pagedListOfArticles;
+        private Mapper _readMapper;
 
         [SetUp]
         public void SetUp ()
@@ -25,14 +27,15 @@ namespace Office4U.ReadApplication.Articles.Queries
             _articleParams = new ArticleParams();
             _testArticles = ArticleList.GetDefaultList().AsEnumerable();
             _pagedListOfArticles = new PagedList<Article>(_testArticles, _testArticles.Count(), 1, 10);
+            _readMapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<Helpers.AutoMapperProfiles>()));
         }
 
         [Test]
         public async Task Execute_WithDefaultParams_ReturnsPagedListOfArticleDtos()
         {
             //Arrange
-            _articlesRepositoryMock.Setup(r => r.GetArticlesAsync(_articleParams)).Returns(Task.FromResult(_pagedListOfArticles));
-            var getArticlesQuery = new GetArticlesQuery(_articlesRepositoryMock.Object);
+            _articlesRepositoryMock.Setup(r => r.GetArticlesAsync(_articleParams)).Returns(Task.FromResult(_pagedListOfArticles));           
+            var getArticlesQuery = new GetArticlesQuery(_articlesRepositoryMock.Object, _readMapper);
 
             //Act
             var result = await getArticlesQuery.Execute(_articleParams);
