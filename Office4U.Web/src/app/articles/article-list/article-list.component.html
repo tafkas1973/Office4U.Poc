@@ -54,7 +54,7 @@
     </div>
   </div>
 
-  <o4u-table [dataRows]="articles" [doubleClickUrl]="'/article/'" [columnTitles]="columnTitles"
+  <o4u-table [dataRows]="articles" [clickUrl]="'/article/'" [columnTitles]="columnTitles"
     [rowCellPropertyNames]="rowCellPropertyNames"></o4u-table>
 
   <div class="d-flex justify-content-end mt-3" *ngIf="pagination?.totalItems > 0">

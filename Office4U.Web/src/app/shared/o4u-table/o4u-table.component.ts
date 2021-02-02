@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class O4uTableComponent implements OnInit {
   @Input() dataRows: Array<any> = [];
-  @Input() doubleClickUrl: string;
+  @Input() clickUrl: string;
   @Input() columnTitles: Array<string> = [];
   @Input() rowCellPropertyNames: Array<string> = [];
   rowObjectKeys: Array<string> = [];
@@ -18,6 +18,6 @@ export class O4uTableComponent implements OnInit {
   ngOnInit(): void { }
 
   onRowClick(id: number) {
-    this.router.navigateByUrl(this.doubleClickUrl + id.toString());
+    this.router.navigateByUrl(this.clickUrl + id.toString());
   }
 }

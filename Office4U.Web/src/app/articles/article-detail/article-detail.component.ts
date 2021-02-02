@@ -79,7 +79,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
           () => {
             this.toastr.success('Article has been deleted');
             const navigationExtras: NavigationExtras = { state: { forceLoad: true } }; 
-            this.router.navigateByUrl('/article-list', navigationExtras);
+            this.router.navigateByUrl('/article', navigationExtras);
           },
           error => {
             this.toastr.error('Failed to delete article');

@@ -3,8 +3,8 @@
 
     <div class="row" *ngIf="article">
         <div class="col-1">
-            <a class="nav-link" routerLink="/article-list"><i class="fa fa-arrow-left o4u-link"></i></a>
-            <a class="nav-link" routerLink="/article/edit/{{article.id.toString()}}"><i
+            <a class="nav-link" routerLink="/article"><i class="fa fa-arrow-left o4u-link"></i></a>
+            <a class="nav-link" routerLink="/article/{{article.id.toString()}}/edit"><i
                     class="fa fa-edit o4u-link"></i></a>
             <a class="nav-link" (click)="onRemoveArticle()"><i class="fa fa-trash o4u-link"></i></a>
         </div>

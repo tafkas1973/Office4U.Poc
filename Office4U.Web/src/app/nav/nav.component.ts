@@ -29,7 +29,7 @@ export class NavComponent implements OnInit, OnDestroy {
       .login(this.model)
       .pipe(takeUntil(this.notifier))
       .subscribe(response => {
-        this.router.navigateByUrl('/article-list');
+        this.router.navigateByUrl('/article');
         this.toastr.success('Login successful');
       })
   }

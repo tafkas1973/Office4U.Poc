@@ -19,21 +19,16 @@ import { RoleGuard } from './_guards/role.guard';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
+    path: 'article',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./articles/articles.module')
+      .then(m => m.ArticlesModule)
+  },
+  {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'article-list', component: ArticleListComponent,
-        canActivate: [RoleGuard],
-        data: { role: 'ManageArticles' }
-      },
-      { path: 'article/:id', component: ArticleDetailComponent },
-      {
-        path: 'article/edit/:id',
-        component: ArticleEditComponent,
-        canDeactivate: [PreventUnsavedChangesGuard]
-      },
       {
         path: 'import', component: ImportComponent,
         canActivate: [RoleGuard],

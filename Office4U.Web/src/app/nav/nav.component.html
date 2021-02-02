@@ -5,7 +5,7 @@
     <ul class="navbar-nav mr-auto">
       <ng-container *ngIf="accountService.currentUser$ | async; else errorPage">
         <li class="nav-item" *appHasRole="['ManageArticles']">
-          <a class="nav-link" routerLink="/article-list" routerLinkActive='active'><i
+          <a class="nav-link" routerLink="/article" routerLinkActive='active'><i
               class="fa fa-bullseye mr-2"></i>Articles</a>
         </li>
         <li class="nav-item" *appHasRole="['ImportArticles']">
