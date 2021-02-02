@@ -5,8 +5,6 @@ using Office4U.Data.Ef.SqlServer.BaseRepositories;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.ReadApplication.Articles.Interfaces.IOC;
-using System;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 

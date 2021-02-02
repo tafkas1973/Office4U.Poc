@@ -69,8 +69,7 @@ namespace Office4U.Presentation.Controller.Articles
         }
 
         [HttpPut]
-        // TODO: restful: also specify id in parm list?
-        // TODO: strictly a command should not return anything, except when not long running
+        // strictly a command should not return anything, except when not long running
         // https://stackoverflow.com/questions/43433318/cqrs-command-return-values
         // https://lostechies.com/jimmybogard/2013/12/19/put-your-controllers-on-a-diet-posts-and-commands/
         public async Task<ActionResult> UpdateArticle(ArticleForUpdateDto articleUpdateDto)
