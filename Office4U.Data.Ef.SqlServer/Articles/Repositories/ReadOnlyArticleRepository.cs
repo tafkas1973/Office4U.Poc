@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Office4U.Common;
+using Office4U.Common.Enums;
 using Office4U.Data.Ef.SqlServer.BaseRepositories;
 using Office4U.Data.Ef.SqlServer.Contexts;
 using Office4U.Domain.Model.Articles.Entities;
 using Office4U.ReadApplication.Articles.Interfaces.IOC;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -82,12 +85,11 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
             ArticleParams articleParams,
             IQueryable<Article> articles)
         {
-            // TODO: use enums instead of magic strings
             articles = articleParams.OrderBy switch
             {
-                "code" => articles.OrderBy(a => a.Code),
-                "supplierReference" => articles.OrderBy(a => a.SupplierReference),
-                "name" => articles.OrderBy(a => a.Name1),
+                ArticleOrderBy.Code => articles.OrderBy(a => a.Code),
+                ArticleOrderBy.SupplierReference => articles.OrderBy(a => a.SupplierReference),
+                ArticleOrderBy.Name => articles.OrderBy(a => a.Name1),
                 _ => articles.OrderBy(a => a.Code)
             };
 

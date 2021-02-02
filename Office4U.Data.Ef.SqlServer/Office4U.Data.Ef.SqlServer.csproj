@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Office4U.Common\Office4U.Common.csproj" />
     <ProjectReference Include="..\Office4U.Domain.Model\Office4U.Domain.Model.csproj" />
     <ProjectReference Include="..\Office4U.ReadApplication\Office4U.ReadApplication.csproj" />
     <ProjectReference Include="..\Office4U.WriteApplication\Office4U.WriteApplication.csproj" />

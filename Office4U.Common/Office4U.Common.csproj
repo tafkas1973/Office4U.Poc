@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="19.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Helpers\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

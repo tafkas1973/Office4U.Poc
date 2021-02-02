@@ -83,7 +83,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public async Task GetArticlesAsync_WithOrderedByCode_ReturnsArticlesThatMatchCriteria()
         {
             //Arrange
-            var articleParams = new ArticleParams() { OrderBy = "code" };
+            var articleParams = new ArticleParams() { OrderBy = Common.Enums.ArticleOrderBy.Code };
 
             //Act
             var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
@@ -99,7 +99,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public async Task GetArticlesAsync_WithOrderBySupplierRef_ReturnsArticlesThatMatchCriteria()
         {
             //Arrange
-            var articleParams = new ArticleParams() { OrderBy = "supplierReference" };
+            var articleParams = new ArticleParams() { OrderBy = Common.Enums.ArticleOrderBy.SupplierReference };
 
             //Act
             var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);
@@ -115,7 +115,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public async Task GetArticlesAsync_WithOrderByName1_ReturnsArticlesThatMatchCriteria()
         {
             //Arrange
-            var articleParams = new ArticleParams() { OrderBy = "name" };
+            var articleParams = new ArticleParams() { OrderBy = Common.Enums.ArticleOrderBy.Name };
 
             //Act
             var result = await _readOnlyArticleRepository.GetArticlesAsync(articleParams);

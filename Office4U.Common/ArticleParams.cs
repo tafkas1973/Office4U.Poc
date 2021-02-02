@@ -1,4 +1,6 @@
-﻿namespace Office4U.Common
+﻿using Office4U.Common.Enums;
+
+namespace Office4U.Common
 {
     public class ArticleParams : ParamsBase
     {
@@ -9,6 +11,6 @@
         public string Unit { get; set; }
         public decimal? PurchasePriceMin { get; set; }
         public decimal? PurchasePriceMax { get; set; }
-        public string OrderBy { get; set; } = "Code";
+        public ArticleOrderBy OrderBy { get; set; } = ArticleOrderBy.Code;
     }
 }
