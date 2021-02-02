@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './_guards/auth.guard';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './core/errors/not-found/not-found.component';
+import { ServerErrorComponent } from './core/errors/server-error/server-error.component';
+import { TestErrorsComponent } from './core/errors/test-errors/test-errors.component';
 import { ExportComponent } from './export/export.component';
 import { HomeComponent } from './home/home.component';
 import { ImportComponent } from './import/import.component';
 import { ManagementComponent } from './management/management.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
-import { RoleGuard } from './_guards/role.guard';
+import { RoleGuard } from './core/guards/role.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

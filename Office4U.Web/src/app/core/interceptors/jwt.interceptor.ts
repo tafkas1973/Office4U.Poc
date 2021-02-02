@@ -8,8 +8,8 @@ import {
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { AccountService } from '../../_services/account.service';
-import { User } from '../../_models/user';
+import { AccountService } from '../account.service';
+import { User } from '../../shared/models/user';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

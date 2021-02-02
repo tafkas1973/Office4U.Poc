@@ -4,8 +4,8 @@ import { takeUntil } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { RolesModalComponent } from '../roles-modal/roles-modal.component';
-import { User } from '../../_models/user';
-import { AdminService } from '../../_services/admin.service';
+import { User } from '../../shared/models/user';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-user-management',

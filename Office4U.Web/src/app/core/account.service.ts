@@ -4,7 +4,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { User } from '../_models/user';
+import { User } from '../shared/models/user';
 
 @Injectable({
   providedIn: 'root'

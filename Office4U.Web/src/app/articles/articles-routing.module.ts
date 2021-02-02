@@ -7,9 +7,9 @@ import { ArticleListComponent } from "./article-list/article-list.component";
 import { ArticleCreateModalComponent } from "./article-create-modal/article-create-modal.component";
 import { ArticleDetailComponent } from "./article-detail/article-detail.component";
 import { ArticleEditComponent } from "./article-edit/article-edit.component";
-import { PreventUnsavedChangesGuard } from "../_guards/prevent-unsaved-changes.guard";
-import { AuthGuard } from "../_guards/auth.guard";
-import { RoleGuard } from "../_guards/role.guard";
+import { PreventUnsavedChangesGuard } from "../core/guards/prevent-unsaved-changes.guard";
+import { AuthGuard } from "../core/guards/auth.guard";
+import { RoleGuard } from "../core/guards/role.guard";
 
 const routes: Routes = [
   {

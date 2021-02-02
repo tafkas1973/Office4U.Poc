@@ -4,12 +4,12 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { fade } from '../../_animations/animation';
+import { fade } from '../../shared/animations/animation';
 
-import { Article, ArticleForCreation } from '../../_models/article';
-import { ArticleParams } from '../../_models/articleParams';
-import { Pagination } from '../../_models/pagination';
-import { ArticleService } from '../../_services/article.service';
+import { Article, ArticleForCreation } from '../../shared/models/article';
+import { ArticleParams } from '../../shared/models/articleParams';
+import { Pagination } from '../../shared/models/pagination';
+import { ArticleService } from '../article.service';
 import { ArticleCreateModalComponent } from '../article-create-modal/article-create-modal.component';
 
 @Component({

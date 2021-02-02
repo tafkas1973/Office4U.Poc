@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { AccountService } from '../_services/account.service';
+import { AccountService } from '../core/account.service';
 
 @Component({
   selector: 'app-register',

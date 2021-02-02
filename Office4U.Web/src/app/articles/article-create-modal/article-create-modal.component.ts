@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ArticleForCreation } from '../../_models/article';
+import { ArticleForCreation } from '../../shared/models/article';
 
 @Component({
   selector: 'app-article-create-modal',

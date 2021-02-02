@@ -5,9 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { Article } from '../../_models/article';
-import { ArticleService } from '../../_services/article.service';
-import { fade } from '../../_animations/animation';
+import { Article } from '../../shared/models/article';
+import { ArticleService } from '../article.service';
+import { fade } from '../../shared/animations/animation';
 
 @Component({
   selector: 'app-article-detail',

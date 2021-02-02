@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
-import { ArticleParams } from '../../_models/articleParams';
+import { ArticleParams } from '../../shared/models/articleParams';
 
 @Component({
   selector: 'app-article-list-filter',

@@ -4,9 +4,9 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { Article, ArticleForCreation } from '../_models/article';
-import { ArticleParams } from '../_models/articleParams';
-import { PaginatedResult } from '../_models/pagination';
+import { Article, ArticleForCreation } from '../shared/models/article';
+import { ArticleParams } from '../shared/models/articleParams';
+import { PaginatedResult } from '../shared/models/pagination';
 
 @Injectable({
   providedIn: 'root'

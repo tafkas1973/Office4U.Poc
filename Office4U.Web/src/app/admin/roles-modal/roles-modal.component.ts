@@ -5,7 +5,7 @@ import {
   OnInit
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { User } from '../../_models/user';
+import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-roles-modal',
