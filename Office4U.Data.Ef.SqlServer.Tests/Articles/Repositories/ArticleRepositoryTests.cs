@@ -11,34 +11,20 @@ using System.Threading.Tasks;
 
 namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 {
-    public class ArticleRepositoryTests
+    public class ArticleRepositoryTests : DatabaseFixture
     {
-        private ArticleRepository _articleRepository;
-        private List<Article> _testArticles;
-        private Mock<DbSet<Article>> _articleDbSetMock;
-        private Mock<DataContext> _dataContextMock;
-
-        [SetUp]
-        public void Setup()
-        {
-            _testArticles = ArticleList.GetDefaultList();
-             _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
-            _dataContextMock = new Mock<DataContext>();
-            _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
-            _articleRepository = new ArticleRepository(_dataContextMock.Object);
-        }
-
         [Test]
         public async Task GetArticleByIdAsync_WithExistingId_ReturnsArticle()
         {
             //Arrange
+            var readOnlyArticleRepository = new ReadOnlyArticleRepository(TestReadOnlyContext);
 
             //Act
-            var result = await _articleRepository.GetArticleByIdAsync(3);
+            var result = await readOnlyArticleRepository.GetArticleByIdAsync(3);
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(Article)));
-            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(List<ArticlePhoto>)));
+            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(HashSet<ArticlePhoto>)));
             Assert.That(result.Code, Is.EqualTo("Article03"));
         }
 
@@ -46,9 +32,10 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public async Task GetArticleByIdAsync_WithNonExistingId_ReturnsNull()
         {
             //Arrange
+            var readOnlyArticleRepository = new ReadOnlyArticleRepository(TestReadOnlyContext);
 
             //Act
-            var result = await _articleRepository.GetArticleByIdAsync(99);
+            var result = await readOnlyArticleRepository.GetArticleByIdAsync(99);
 
             //Assert
             Assert.That(result, Is.Null);
@@ -59,14 +46,20 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
         public void Update_WithChangedEntity_PerformsAContextUpdate()
         {
             //Arrange
-            var updatedArticle = _testArticles.First();
+            var testArticles = ArticleList.GetDefaultList();
+            var articleDbSetMock = testArticles.AsQueryable().BuildMockDbSet();
+            var dataContextMock = new Mock<DataContext>();
+            dataContextMock.Setup(m => m.Articles).Returns(articleDbSetMock.Object);
+            var articleRepository = new ArticleRepository(dataContextMock.Object);
+
+            var updatedArticle = testArticles.First();
             updatedArticle.SetCode("1st article updated");
             var isContextUpdateCalled = false;
             //_dataContextMock.Setup(m => m.Set<Article>()).Returns(_articleDbSetMock.Object).Verifiable();
-            _dataContextMock.Setup(m => m.Update(It.IsAny<object>())).Callback(() => isContextUpdateCalled = true);
+            dataContextMock.Setup(m => m.Update(It.IsAny<object>())).Callback(() => isContextUpdateCalled = true);
 
             //Act
-            _articleRepository.Update(updatedArticle);
+            articleRepository.Update(updatedArticle);
 
             //Assert            
             //_dataContextMock.Verify(m => m.Update(updatedArticle), Times.Once); //doesn't work with generic type

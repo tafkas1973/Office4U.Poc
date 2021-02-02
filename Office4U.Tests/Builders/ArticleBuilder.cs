@@ -74,7 +74,7 @@ namespace Office4U.Tests.Builders
         public Article Build()
         {
             var article = Article.Create(_code, _name1, _supplierId, _supplierReference, _purchasePrice, _unit);
-            article.SetId(_id);
+            //article.SetId(_id);
             article.AddPhotos(_photos);
             return article;
         }

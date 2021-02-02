@@ -110,7 +110,6 @@ namespace Office4U.Articles.ImportExport.Api.Articles.Controllers
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ActionResult<ArticleDto>)));
             Assert.That(((ObjectResult)result.Result).Value.GetType(), Is.EqualTo(typeof(ArticleDto)));
-            Assert.That(((ArticleDto)((ObjectResult)result.Result).Value).Id, Is.EqualTo(2));
         }
 
         [Test]
