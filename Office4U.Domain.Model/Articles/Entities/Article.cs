@@ -12,7 +12,7 @@ namespace Office4U.Domain.Model.Articles.Entities
         public string SupplierReference { get; private set; }
         public string Unit { get; private set; }
         public decimal PurchasePrice { get; private set; }
-        public ICollection<ArticlePhoto> Photos { get; private set; }
+        public ICollection<ArticlePhoto> Photos { get; private set; } = new List<ArticlePhoto>();
 
         public static Article Create(
                 string code,
@@ -20,7 +20,8 @@ namespace Office4U.Domain.Model.Articles.Entities
                 string supplierId,
                 string supplierReference,
                 decimal purchasePrice,
-                string unit
+                string unit,
+                ICollection<ArticlePhoto> photos
             )
         {
             var article = new Article()
@@ -31,8 +32,22 @@ namespace Office4U.Domain.Model.Articles.Entities
                 SupplierReference = supplierReference,
                 PurchasePrice = purchasePrice,
                 Unit = unit,
-                Photos = new List<ArticlePhoto>()
+                Photos = photos ?? new List<ArticlePhoto>()
             };
+            return article;
+        }
+
+        public static Article Create(
+        string code,
+        string name1,
+        string supplierId,
+        string supplierReference,
+        decimal purchasePrice,
+        string unit
+    )
+        {
+            var emptyPhotoList = new List<ArticlePhoto>();
+            var article = Create(code, name1, supplierId, supplierReference, purchasePrice, unit, emptyPhotoList);
             return article;
         }
 

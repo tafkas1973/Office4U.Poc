@@ -1,3 +1,6 @@
+using Office4U.Domain.Model.Articles.Entities;
+using System.Collections.Generic;
+
 namespace Office4U.WriteApplication.Articles.DTOs
 {
     public class ArticleForReturnDto
@@ -9,5 +12,6 @@ namespace Office4U.WriteApplication.Articles.DTOs
         public string Name1 { get; set; }
         public string Unit { get; set; }
         public decimal PurchasePrice { get; set; }
+        public ICollection<ArticlePhotoForReturnDto> Photos { get; set; }
     }
 }

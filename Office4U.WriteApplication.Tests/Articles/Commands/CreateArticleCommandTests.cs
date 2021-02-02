@@ -40,7 +40,8 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
                 SupplierId = "sup id",
                 SupplierReference = "sup ref",
                 PurchasePrice = 99.99M,
-                Unit = "ST"
+                Unit = "ST",
+                PhotoUrl = "www.retail4u.be/newarticle.jpg"
             };
             var createArticleCommand = new CreateArticleCommand(unitOfWork, _writeMapper);
             var articleCountBefore = TestContext.Articles.Count();
@@ -51,9 +52,12 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             //Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.GetType(), Is.EqualTo(typeof(ArticleForReturnDto)));
+            Assert.That(TestContext.Articles.Count, Is.EqualTo(articleCountBefore + 1));
             Assert.That(result.Id, Is.Not.Null);
             Assert.That(result.Name1, Is.EqualTo(articleForCreation.Name1));
-            Assert.That(TestContext.Articles.Count, Is.EqualTo(articleCountBefore + 1));
+            Assert.That(result.Photos, Is.Not.Null);
+            Assert.That(result.Photos.First(), Is.Not.Null);
+            Assert.That(result.Photos.First().Url, Is.EqualTo("www.retail4u.be/newarticle.jpg"));
         }
 
         [Test]

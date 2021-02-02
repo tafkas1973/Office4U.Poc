@@ -5,7 +5,6 @@ namespace Office4U.Tests.Builders
 {
     public class ArticleBuilder
     {
-        private int _id;
         private string _code;
         private string _supplierId;
         private string _supplierReference;
@@ -21,19 +20,11 @@ namespace Office4U.Tests.Builders
 
         public ArticleBuilder WithDefault()
         {
-            _id = 1;
             _name1 = "name";
             _purchasePrice = 10;
             _photos = new List<ArticlePhoto>();
             return this;
         }
-
-        public ArticleBuilder WithId(int value)
-        {
-            _id = value;
-            return this;
-        }
-
 
         public ArticleBuilder WithCode(string value)
         {
@@ -71,10 +62,15 @@ namespace Office4U.Tests.Builders
             return this;
         }
 
+        public ArticleBuilder WithPhotos(ICollection<ArticlePhoto> photos)
+        {
+            _photos = photos;
+            return this;
+        }
+
         public Article Build()
         {
-            var article = Article.Create(_code, _name1, _supplierId, _supplierReference, _purchasePrice, _unit);
-            //article.SetId(_id);
+            var article = Article.Create(_code, _name1, _supplierId, _supplierReference, _purchasePrice, _unit, _photos);
             article.AddPhotos(_photos);
             return article;
         }

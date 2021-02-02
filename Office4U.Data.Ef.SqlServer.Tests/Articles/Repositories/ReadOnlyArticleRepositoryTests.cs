@@ -37,7 +37,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(PagedList<Article>)));
-            Assert.That(result.First().Photos.GetType(), Is.EqualTo(typeof(HashSet<ArticlePhoto>)));
+            Assert.That(result.First().Photos.GetType(), Is.EqualTo(typeof(List<ArticlePhoto>)));
             Assert.That(result.Count, Is.EqualTo(_defaultPageSize));
             Assert.That(result.First().Code, Is.EqualTo("Article01"));
             Assert.That(result[9].Code, Is.EqualTo("Article10"));
@@ -289,7 +289,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(Article)));
-            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(HashSet<ArticlePhoto>)));
+            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(List<ArticlePhoto>)));
             Assert.That(result.Code, Is.EqualTo("Article03"));
         }
 

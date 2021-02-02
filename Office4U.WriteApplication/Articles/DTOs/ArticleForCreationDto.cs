@@ -12,12 +12,13 @@ namespace Office4U.WriteApplication.Articles.DTOs
         [Required]
         [MaxLength(150)]
         public string SupplierReference { get; set; }
-         [Required]
+        [Required]
         public string Name1 { get; set; }
         [Required]
         public string Unit { get; set; }
         [Required]
         [Range(0.01, 99999.99)]
         public decimal PurchasePrice { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

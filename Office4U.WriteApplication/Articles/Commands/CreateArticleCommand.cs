@@ -25,6 +25,9 @@ namespace Office4U.WriteApplication.Articles.Commands
         {
             var newArticle = _mapper.Map<Article>(articleForCreation);
 
+            if (!string.IsNullOrEmpty(articleForCreation.PhotoUrl))
+                newArticle.Photos.Add(ArticlePhoto.Create(articleForCreation.PhotoUrl, true));
+
             _unitOfWork.ArticleRepository.Add(newArticle);
 
             if (await _unitOfWork.Commit())

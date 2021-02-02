@@ -23,6 +23,19 @@ namespace Office4U.Domain.Model.Articles.Entities
             Assert.That(result.Unit, Is.EqualTo("ST"));
         }
 
+        [Test]
+        public void Create_SetCode_ThrowsNoExceptions()
+        {
+            //Arrange
+            var article = Article.Create("new code", "new name", "sup id", "sup ref", 123.45M, "ST");
+
+            //Act
+            article.SetCode("Updated code");
+
+            //Assert
+        }
+
+        [Test]
         public void Create_SetPhoto_ThrowsNoExceptions()
         {
             //Arrange

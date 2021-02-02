@@ -24,7 +24,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 
             //Assert
             Assert.That(result.GetType(), Is.EqualTo(typeof(Article)));
-            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(HashSet<ArticlePhoto>)));
+            Assert.That(result.Photos.GetType(), Is.EqualTo(typeof(List<ArticlePhoto>)));
             Assert.That(result.Code, Is.EqualTo("Article03"));
         }
 

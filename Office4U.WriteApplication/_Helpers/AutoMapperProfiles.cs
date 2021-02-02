@@ -11,6 +11,7 @@ namespace Office4U.WriteApplication.Helpers
             CreateMap<Article, ArticleForReturnDto>();
             CreateMap<ArticleForUpdateDto, Article>();
             CreateMap<ArticleForCreationDto, Article>();
+            CreateMap<ArticlePhoto, ArticlePhotoForReturnDto>();
         }
     }
 }
