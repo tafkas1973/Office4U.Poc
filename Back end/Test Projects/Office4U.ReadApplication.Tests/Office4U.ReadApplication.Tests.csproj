@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Office4U.ReadApplication\Office4U.ReadApplication.csproj" />
+    <ProjectReference Include="..\..\Office4U.ReadApplication\Office4U.ReadApplication.csproj" />
     <ProjectReference Include="..\Office4U.Tests\Office4U.Tests.csproj" />
   </ItemGroup>
 

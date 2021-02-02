@@ -41,17 +41,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Application", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Presentation.Controller.Tests", "..\Test Projects\Office4U.Articles.Presentation.Controller.Tests\Office4U.Presentation.Controller.Tests.csproj", "{3A1E38FD-911E-4037-8893-D8D15512301E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Common.Tests", "..\Office4U.Common.Tests\Office4U.Common.Tests.csproj", "{A84572A2-80A5-43F6-9788-A1521C4113B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Common.Tests", "..\Test Projects\Office4U.Common.Tests\Office4U.Common.Tests.csproj", "{A84572A2-80A5-43F6-9788-A1521C4113B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.ReadApplication.Tests", "..\Office4U.ReadApplication.Tests\Office4U.ReadApplication.Tests.csproj", "{843A3584-C350-4DE4-B3E2-885099D218E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.ReadApplication.Tests", "..\Test Projects\Office4U.ReadApplication.Tests\Office4U.ReadApplication.Tests.csproj", "{843A3584-C350-4DE4-B3E2-885099D218E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Tests", "..\Office4U.Tests\Office4U.Tests.csproj", "{52FA3752-A9EF-44BE-BFF9-1E260CF93B0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Tests", "..\Test Projects\Office4U.Tests\Office4U.Tests.csproj", "{52FA3752-A9EF-44BE-BFF9-1E260CF93B0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Data.Ef.SqlServer.Tests", "..\Office4U.Data.Ef.SqlServer.Tests\Office4U.Data.Ef.SqlServer.Tests.csproj", "{F8CDB3BE-D15A-4FF9-95C7-ACCA40F097A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.Data.Ef.SqlServer.Tests", "..\Test Projects\Office4U.Data.Ef.SqlServer.Tests\Office4U.Data.Ef.SqlServer.Tests.csproj", "{F8CDB3BE-D15A-4FF9-95C7-ACCA40F097A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.WriteApplication.Tests", "..\Office4U.WriteApplication.Tests\Office4U.WriteApplication.Tests.csproj", "{2175F588-0656-4639-89D8-E1184F8898BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Office4U.WriteApplication.Tests", "..\Test Projects\Office4U.WriteApplication.Tests\Office4U.WriteApplication.Tests.csproj", "{2175F588-0656-4639-89D8-E1184F8898BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Office4U.Domain.Model.Tests", "..\Office4U.Domain.Model.Tests\Office4U.Domain.Model.Tests.csproj", "{38C3D4D7-D517-43D7-A22E-C805750C01CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Office4U.Domain.Model.Tests", "..\Test Projects\Office4U.Domain.Model.Tests\Office4U.Domain.Model.Tests.csproj", "{38C3D4D7-D517-43D7-A22E-C805750C01CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

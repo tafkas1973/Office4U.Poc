@@ -4,23 +4,23 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <RootNamespace>Office4U.Data.Ef.SqlServer</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="MockQueryable.Moq" Version="5.0.0" />
     <PackageReference Include="Moq" Version="4.16.0" />
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Office4U.Data.Ef.SqlServer.Tests\Office4U.Data.Ef.SqlServer.Tests.csproj" />
-    <ProjectReference Include="..\Office4U.Data.Ef.SqlServer\Office4U.Data.Ef.SqlServer.csproj" />
+    <ProjectReference Include="..\..\Office4U.Data.Ef.SqlServer\Office4U.Data.Ef.SqlServer.csproj" />
+    <ProjectReference Include="..\..\Office4U.Domain.Model\Office4U.Domain.Model.csproj" />
     <ProjectReference Include="..\Office4U.Tests\Office4U.Tests.csproj" />
-    <ProjectReference Include="..\Office4U.WriteApplication\Office4U.WriteApplication.csproj" />
   </ItemGroup>
 
 </Project>

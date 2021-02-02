@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Office4U.Domain.Model\Office4U.Domain.Model.csproj" />
+    <ProjectReference Include="..\..\Office4U.Domain.Model\Office4U.Domain.Model.csproj" />
   </ItemGroup>
 
 </Project>
