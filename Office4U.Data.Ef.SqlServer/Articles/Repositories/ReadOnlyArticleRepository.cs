@@ -12,7 +12,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 {
     public class ReadOnlyArticleRepository : ReadOnlyRepositoryBase, IReadOnlyArticleRepository
     {
-        public ReadOnlyArticleRepository(ReadOnlyDataContext readOnlyContext) : base(readOnlyContext) { }
+        public ReadOnlyArticleRepository(QueryDbContext readOnlyContext) : base(readOnlyContext) { }
 
         public async Task<PagedList<Article>> GetArticlesAsync(
             ArticleParams articleParams)

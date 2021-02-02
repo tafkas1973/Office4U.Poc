@@ -8,10 +8,10 @@ namespace Office4U.Data.Ef.SqlServer.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DataContext _context;
+        private readonly CommandDbContext _context;
 
         public UnitOfWork(
-            DataContext context,
+            CommandDbContext context,
             IArticleRepository articleRepository,
             IUserRepository userRepository)
         {

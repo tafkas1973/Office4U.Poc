@@ -66,7 +66,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
             //Arrange
             var testArticles = ArticleList.GetDefaultList();
             var articleDbSetMock = testArticles.AsQueryable().BuildMockDbSet();
-            var dataContextMock = new Mock<DataContext>();
+            var dataContextMock = new Mock<CommandDbContext>();
             dataContextMock.Setup(m => m.Articles).Returns(articleDbSetMock.Object);
             var articleRepository = new Mock<IArticleRepository>();
             var unitOfWorkMock = new Mock<IUnitOfWork>();

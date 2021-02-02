@@ -23,7 +23,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
     {
         private List<Article> _testArticles;
         private Mock<DbSet<Article>> _articleDbSetMock;
-        private Mock<DataContext> _dataContextMock;
+        private Mock<CommandDbContext> _dataContextMock;
         private Mock<IArticleRepository> _articleRepositoryMock;
         private IArticleRepository _articleRepository;
         private Mock<IUnitOfWork> _unitOfWorkMock;
@@ -35,7 +35,7 @@ namespace Office4U.WriteApplication.Tests.Articles.Commands
         {
             _testArticles = ArticleList.GetDefaultList();
             _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
-            _dataContextMock = new Mock<DataContext>();
+            _dataContextMock = new Mock<CommandDbContext>();
             _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
             _articleRepositoryMock = new Mock<IArticleRepository>();
             _articleRepository = new ArticleRepository(TestContext);

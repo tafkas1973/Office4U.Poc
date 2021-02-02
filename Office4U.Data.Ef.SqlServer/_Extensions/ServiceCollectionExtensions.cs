@@ -15,11 +15,11 @@ namespace Office4U.Data.Ef.SqlServer.Extensions
     {
         public static void RegisterDataServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ReadOnlyDataContext>(options =>
+            services.AddDbContext<QueryDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<CommandDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
@@ -29,7 +29,7 @@ namespace Office4U.Data.Ef.SqlServer.Extensions
         {
             try
             {
-                var context = services.GetRequiredService<DataContext>();
+                var context = services.GetRequiredService<CommandDbContext>();
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
@@ -38,7 +38,7 @@ namespace Office4U.Data.Ef.SqlServer.Extensions
             }
             catch (Exception ex)
             {
-                var logger = services.GetRequiredService<ILogger<DataContext>>();
+                var logger = services.GetRequiredService<ILogger<CommandDbContext>>();
                 logger.LogError(ex, "An error occured during migration");
             }
         }

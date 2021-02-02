@@ -9,7 +9,7 @@ using Office4U.Data.Ef.SqlServer.Contexts;
 
 namespace Office4U.Data.Ef.SqlServer.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(CommandDbContext))]
     [Migration("20210129103218_InitialCreate")]
     partial class InitialCreate
     {

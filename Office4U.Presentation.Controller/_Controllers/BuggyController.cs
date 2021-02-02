@@ -7,8 +7,8 @@ namespace Office4U.Presentation.Controller.Controllers
 {
     public class BuggyController : BaseApiController
     {
-        private readonly ReadOnlyDataContext _context;
-        public BuggyController(ReadOnlyDataContext context)
+        private readonly QueryDbContext _context;
+        public BuggyController(QueryDbContext context)
         {
             _context = context;
         }

@@ -10,7 +10,7 @@ namespace Office4U.Data.Ef.SqlServer.Users.Repositories
 {
     public class ReadOnlyUserRepository : ReadOnlyRepositoryBase, IReadOnlyUserRepository
     {
-        public ReadOnlyUserRepository(ReadOnlyDataContext readOnlyContext) : base(readOnlyContext) { }
+        public ReadOnlyUserRepository(QueryDbContext readOnlyContext) : base(readOnlyContext) { }
 
         public async Task<PagedList<AppUser>> GetUsersAsync(UserParams userParams)
         {

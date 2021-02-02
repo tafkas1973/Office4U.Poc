@@ -19,14 +19,14 @@ namespace Office4U.Data.Ef.SqlServer.UnitOfWork
         private UnitOfWork _unitOfWork;
         private List<Article> _testArticles;
         private Mock<DbSet<Article>> _articleDbSetMock;
-        private Mock<DataContext> _dataContextMock;
+        private Mock<CommandDbContext> _dataContextMock;
 
         [SetUp]
         public void Setup()
         {
             _testArticles = ArticleList.GetDefaultList();
             _articleDbSetMock = _testArticles.AsQueryable().BuildMockDbSet();
-            _dataContextMock = new Mock<DataContext>();
+            _dataContextMock = new Mock<CommandDbContext>();
             _dataContextMock.Setup(m => m.Articles).Returns(_articleDbSetMock.Object);
             _articleRepository = new ArticleRepository(_dataContextMock.Object);
             _unitOfWork = new UnitOfWork(_dataContextMock.Object, _articleRepository, null);

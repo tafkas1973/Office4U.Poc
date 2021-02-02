@@ -10,7 +10,7 @@ namespace Office4U.Data.Ef.SqlServer.Users.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public UserRepository(DataContext context) : base(context) { }
+        public UserRepository(CommandDbContext context) : base(context) { }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {

@@ -47,7 +47,7 @@ namespace Office4U.Data.Ef.SqlServer.SeedData
             await userManager.AddToRolesAsync(admin, new[] { "Admin" });
         }
 
-        public static async Task SeedArticles(DataContext context)
+        public static async Task SeedArticles(CommandDbContext context)
         {
             if (await context.Articles.AnyAsync()) return;
 

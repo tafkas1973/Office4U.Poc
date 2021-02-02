@@ -24,7 +24,7 @@ namespace Office4U.Presentation.Controller.Extensions
                 .AddRoleManager<RoleManager<AppRole>>()
                 .AddSignInManager<SignInManager<AppUser>>()
                 .AddRoleValidator<RoleValidator<AppRole>>()
-                .AddEntityFrameworkStores<DataContext>();
+                .AddEntityFrameworkStores<CommandDbContext>();
 
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

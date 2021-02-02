@@ -48,7 +48,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
             //Arrange
             var testArticles = ArticleList.GetDefaultList();
             var articleDbSetMock = testArticles.AsQueryable().BuildMockDbSet();
-            var dataContextMock = new Mock<DataContext>();
+            var dataContextMock = new Mock<CommandDbContext>();
             dataContextMock.Setup(m => m.Articles).Returns(articleDbSetMock.Object);
             var articleRepository = new ArticleRepository(dataContextMock.Object);
 

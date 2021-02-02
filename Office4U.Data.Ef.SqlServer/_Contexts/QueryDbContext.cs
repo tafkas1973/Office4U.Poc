@@ -6,7 +6,7 @@ using Office4U.Domain.Model.Users.Entities;
 
 namespace Office4U.Data.Ef.SqlServer.Contexts
 {
-    public class DataContext :
+    public class QueryDbContext :
        IdentityDbContext<
            AppUser,
            AppRole,
@@ -18,11 +18,11 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
            IdentityUserToken<int>
        >
     {
+        public QueryDbContext() { }
+        public QueryDbContext(DbContextOptions<QueryDbContext> options) : base(options) { }
 
-        public DataContext() { } // for testing purposes only
-        public DataContext(DbContextOptions options) : base(options) { }
-
-        public virtual DbSet<Article> Articles { get; set; }
+        // TODO: expose IQueryable here instead of DbSet ?
+        public DbSet<Article> Articles { get; set; }
         public DbSet<ArticlePhoto> ArticlePhotos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -40,13 +40,6 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
                 .WithOne(ur => ur.Role)
                 .HasForeignKey(r => r.RoleId)
                 .IsRequired();
-        }
-
-
-        // used for migrations
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
         }
     }
 }

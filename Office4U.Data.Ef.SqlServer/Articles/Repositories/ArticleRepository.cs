@@ -9,7 +9,7 @@ namespace Office4U.Data.Ef.SqlServer.Articles.Repositories
 {
     public class ArticleRepository : RepositoryBase, IArticleRepository
     {
-        public ArticleRepository(DataContext context) : base(context) { }
+        public ArticleRepository(CommandDbContext context) : base(context) { }
 
         public async Task<Article> GetArticleByIdAsync(int id)
         {

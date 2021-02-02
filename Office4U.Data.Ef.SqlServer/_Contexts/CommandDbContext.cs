@@ -6,7 +6,7 @@ using Office4U.Domain.Model.Users.Entities;
 
 namespace Office4U.Data.Ef.SqlServer.Contexts
 {
-    public class ReadOnlyDataContext :
+    public class CommandDbContext :
        IdentityDbContext<
            AppUser,
            AppRole,
@@ -18,8 +18,9 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
            IdentityUserToken<int>
        >
     {
-        public ReadOnlyDataContext() { }
-        public ReadOnlyDataContext(DbContextOptions<ReadOnlyDataContext> options) : base(options) { }
+
+        public CommandDbContext() { } // for testing purposes only
+        public CommandDbContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Article> Articles { get; set; }
         public DbSet<ArticlePhoto> ArticlePhotos { get; set; }
@@ -28,6 +29,7 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
         {
             base.OnModelCreating(builder);
 
+            // TODO: DRY (2 contexts)
             builder.Entity<AppUser>()
                 .HasMany(u => u.UserRoles)
                 .WithOne(ur => ur.User)
@@ -39,6 +41,13 @@ namespace Office4U.Data.Ef.SqlServer.Contexts
                 .WithOne(ur => ur.Role)
                 .HasForeignKey(r => r.RoleId)
                 .IsRequired();
+        }
+
+
+        // uncomment for migrations
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer("Server=localhost\\MSSQLSERVER01;Database=Office4U.Article;Trusted_Connection=True;");
         }
     }
 }

@@ -5,8 +5,8 @@ namespace Office4U.Data.Ef.SqlServer.BaseRepositories
 {
     public class RepositoryBase : IRepositoryBase
     {
-        protected readonly DataContext Context;
-        public RepositoryBase(DataContext context)
+        protected readonly CommandDbContext Context;
+        public RepositoryBase(CommandDbContext context)
         {
             Context = context;
         }

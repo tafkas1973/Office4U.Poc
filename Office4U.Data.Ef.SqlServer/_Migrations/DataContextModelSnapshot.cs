@@ -8,7 +8,7 @@ using Office4U.Data.Ef.SqlServer.Contexts;
 
 namespace Office4U.Data.Ef.SqlServer.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(CommandDbContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
