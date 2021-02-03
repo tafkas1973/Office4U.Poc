@@ -29,7 +29,10 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.loadArticle();
+    this.route.data.subscribe(data => {
+      this.article = data['article'];
+      this.galleryImages = this.getImages();
+    });
 
     this.galleryOptions = [
       {
@@ -53,16 +56,6 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
       });
     }
     return imageUrls;
-  }
-
-  loadArticle() {
-    this.articleService
-      .getArticle((Number)(this.route.snapshot.paramMap.get('id')))
-      .pipe(takeUntil(this.notifier))
-      .subscribe(article => {
-        this.article = article
-        this.galleryImages = this.getImages();
-      });
   }
 
   onRemoveArticle() {

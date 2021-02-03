@@ -32,16 +32,9 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.loadArticle();
-  }
-
-  loadArticle() {
-    this.articleService
-      .getArticle(Number(this.route.snapshot.paramMap.get('id')))
-      .pipe(takeUntil(this.notifier))
-      .subscribe(article => {
-        this.article = article
-      });
+    this.route.data.subscribe(data => {
+      this.article = data['article'];
+    });
   }
 
   updateArticle() {

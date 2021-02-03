@@ -7,11 +7,12 @@ import { environment } from '../../environments/environment';
 import { Article, ArticleForCreation } from '../shared/models/article';
 import { ArticleParams } from '../shared/models/articleParams';
 import { PaginatedResult } from '../shared/models/pagination';
+import { ArticleServiceContract } from './article.service.contract';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class ArticleService implements ArticleServiceContract {
   baseUrl = environment.apiUrl;
   articles: Array<Article> = [];
   paginatedResult: PaginatedResult<Array<Article>> = new PaginatedResult<Array<Article>>();

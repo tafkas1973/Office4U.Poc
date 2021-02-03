@@ -43,7 +43,7 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   exports: [
   ],

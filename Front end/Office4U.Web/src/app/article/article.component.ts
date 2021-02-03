@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   templateUrl: 'article.component.html',
   providers: []
 })
-export class ArticlesComponent {}
+export class ArticleComponent {}

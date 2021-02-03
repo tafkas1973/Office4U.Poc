@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
@@ -36,6 +36,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
 
   constructor(
     private articleService: ArticleService,
+    private route: ActivatedRoute,
     private router: Router,
     private modalService: BsModalService,
     private toastr: ToastrService
@@ -47,7 +48,13 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadArticles(this.forceLoad);
+    if (this.isInitialLoad) {
+      this.route.data.subscribe(data => {
+        this.articles = data.articles.result;
+        this.pagination = data.articles.pagination;
+      })
+      this.loadArticles(this.forceLoad);
+    }
   }
 
   onPageChanged(event: any, forceLoad = false) {
